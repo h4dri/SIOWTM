@@ -12,6 +12,7 @@ namespace Persistance
         }
 
         public DbSet<Value> Values {get; set;}
+                public DbSet<Visit> Visits {get; set;}
 
         protected override void OnModelCreating(ModelBuilder buildier)
         {
