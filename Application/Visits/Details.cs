@@ -1,7 +1,9 @@
 
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using Domain;
 using MediatR;
 using Persistance;
@@ -26,6 +28,10 @@ namespace Application.Visits
             public async Task<Visit> Handle(Query request, CancellationToken cancellationToken)
             {
                 var visit = await _context.Visits.FindAsync(request.Id);
+                
+                if(visit == null)
+                            throw new RestException(HttpStatusCode.NotFound,
+                            new {visit = "Not Found"});
 
                 return visit;
             }

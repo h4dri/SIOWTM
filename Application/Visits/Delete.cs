@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using MediatR;
 using Persistance;
 
@@ -26,7 +28,8 @@ namespace Application.Visits
                         var visit = await _context.Visits.FindAsync(request.Id);
 
                         if(visit == null)
-                            throw new Exception("Could not find visit");
+                            throw new RestException(HttpStatusCode.NotFound,
+                            new {visit = "Not Found"});
 
                         _context.Remove(visit);
                         
