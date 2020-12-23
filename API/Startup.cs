@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Middleware;
 using Application.Visits;
+using Domain;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Persistance;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -41,6 +37,16 @@ namespace API
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<Create>();
             });
+            // services.AddMvc()
+            //     .AddFluentValidation(cfg =>
+            //     cfg.RegisterValidatorsFromAssemblyContaining<Create>())
+            //     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var buildier = services.AddIdentityCore<AppUser>();
+            var identityBuildier = new IdentityBuilder(buildier.UserType, buildier.Services);
+            identityBuildier.AddEntityFrameworkStores<DataContext>();
+            identityBuildier.AddSignInManager<SignInManager<AppUser>>();
+
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
