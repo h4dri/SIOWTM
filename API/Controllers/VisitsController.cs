@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Visits;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -23,6 +24,7 @@ namespace API.Controllers
             return await _mediator.Send(new List.Query());
         }
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Visit>> Details(Guid id)
         {
             return await _mediator.Send(new Details.Query{Id = id});
