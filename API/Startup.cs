@@ -17,6 +17,8 @@ using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace API
 {
@@ -38,14 +40,15 @@ namespace API
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
-            services.AddControllers().AddFluentValidation(cfg => 
+            services.AddControllers(opt =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                opt.Filters.Add(new AuthorizeFilter(policy));
+            })
+                .AddFluentValidation(cfg =>
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<Create>();
             });
-            // services.AddMvc()
-            //     .AddFluentValidation(cfg =>
-            //     cfg.RegisterValidatorsFromAssemblyContaining<Create>())
-            //     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var buildier = services.AddIdentityCore<AppUser>();
             var identityBuildier = new IdentityBuilder(buildier.UserType, buildier.Services);
             identityBuildier.AddEntityFrameworkStores<DataContext>();
@@ -65,6 +68,7 @@ namespace API
                 };
             });
             services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IUserAccessor, UserAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
