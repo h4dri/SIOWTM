@@ -55,7 +55,7 @@ namespace API
             identityBuildier.AddSignInManager<SignInManager<AppUser>>();
             
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokkenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(opt =>
             {
