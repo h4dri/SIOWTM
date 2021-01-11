@@ -19,13 +19,13 @@ namespace API.Controllers
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Visit>>> List()
+        public async Task<ActionResult<List<VisitDto>>> List()
         {
             return await _mediator.Send(new List.Query());
         }
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult<Visit>> Details(Guid id)
+        public async Task<ActionResult<VisitDto>> Details(Guid id)
         {
             return await _mediator.Send(new Details.Query{Id = id});
         }
