@@ -28,8 +28,6 @@ namespace Application.Visits
             public async Task<List<VisitDto>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var visits = await _context.Visits
-                .Include(x => x.UserVisits)
-                .ThenInclude(x => x.AppUser)
                 .ToListAsync();
                 return _mapper.Map<List<Visit>, List<VisitDto>>(visits);
             }

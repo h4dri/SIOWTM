@@ -13,7 +13,7 @@ namespace Domain
         public DateTime Date {get;set;}
         public int DoctorId {get;set;}
         public int PatientId  {get;set;}
-        public ICollection<UserVisit> UserVisits {get; set;}
+        public virtual ICollection<UserVisit> UserVisits {get; set;}
 
     }
 }
