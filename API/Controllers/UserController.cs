@@ -26,5 +26,10 @@ namespace API.Controllers
         {
             return await Mediator.Send(new CurrentUser.Query());
         }
+        [HttpGet("doctors")]
+        public async Task<string[]> Doctors()
+        {
+            return await Mediator.Send(new Doctors.Query());
+        }
     }
 }
