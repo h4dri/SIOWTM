@@ -5,9 +5,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
 
-namespace Application.Visits
+namespace Application.User
 {
-    public class Categories
+    public class Doctors
     {
         public class Query : IRequest<string[]> {}
         
@@ -23,7 +23,7 @@ namespace Application.Visits
         
                     public async Task<string[]> Handle(Query request, CancellationToken cancellationToken)
                     {
-                        return await _context.Visits.Select(c => c.Category).Distinct().ToArrayAsync();
+                        return await _context.Users.Where(d => d.IsDoctor == true).Select(u => u.UserName).ToArrayAsync();
                     }
                 }
     }

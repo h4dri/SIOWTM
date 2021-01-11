@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
@@ -60,6 +61,8 @@ namespace Application.Visits
                 var user = await _context.Users.SingleOrDefaultAsync(x => 
                     x.UserName == _userAccessor.GetCurrentUsername());
 
+                var doctor = await _context.Users.Where(d => d.IsDoctor == true).FirstAsync();
+
                 var attendee = new UserVisit
                 {
                     AppUser = user,
@@ -67,8 +70,16 @@ namespace Application.Visits
                     IsHost = true,
                     DateJoined = DateTime.Now
                 };
+                var attendee2 = new UserVisit
+                {
+                    AppUser = doctor,
+                    Visit = visit,
+                    IsHost = false,
+                    DateJoined = DateTime.Now
+                };
 
                 _context.UserVisits.Add(attendee);
+                _context.UserVisits.Add(attendee2);
 
                 var success = await _context.SaveChangesAsync() > 0;
 
