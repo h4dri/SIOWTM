@@ -12,6 +12,7 @@ namespace Persistance
 
         public DbSet<Value> Values {get; set;}
         public DbSet<Visit> Visits {get; set;}
+        public DbSet<UserVisit> UserVisits {get; set;}
 
         protected override void OnModelCreating(ModelBuilder buildier)
         {
@@ -23,6 +24,19 @@ namespace Persistance
                 new Value {Id = 2, Name = "Value 102"},
                 new Value {Id = 3, Name = "Value 103"}
             );
+
+            buildier.Entity<UserVisit>(x => x.HasKey(ua => 
+            new {ua.AppUserId, ua.VisitId}));
+
+            buildier.Entity<UserVisit>()
+                .HasOne(u => u.AppUser)
+                .WithMany(a => a.UserVisits)
+                .HasForeignKey(u => u.AppUserId);
+
+            buildier.Entity<UserVisit>()
+                .HasOne(a => a.Visit)
+                .WithMany(u => u.UserVisits)
+                .HasForeignKey(a => a.VisitId);
         }
     }
 }

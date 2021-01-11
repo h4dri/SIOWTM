@@ -2,9 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistance;
 
 namespace Application.Visits
@@ -13,7 +15,7 @@ namespace Application.Visits
     {
         public class Command : IRequest
         {
-            
+
             public Guid Id { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
@@ -39,8 +41,10 @@ namespace Application.Visits
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
-            public Handler(DataContext context)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(DataContext context, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _context = context;
             }
 
@@ -58,13 +62,27 @@ namespace Application.Visits
                 };
 
                 _context.Visits.Add(visit);
+
+                var user = await _context.Users.SingleOrDefaultAsync(x => 
+                    x.UserName == _userAccessor.GetCurrentUsername());
+
+                var attendee = new UserVisit
+                {
+                    AppUser = user,
+                    Visit = visit,
+                    IsHost = true,
+                    DateJoined = DateTime.Now
+                };
+
+                _context.UserVisits.Add(attendee);
+
                 var success = await _context.SaveChangesAsync() > 0;
 
-                if(success) return Unit.Value;
+                if (success) return Unit.Value;
 
                 throw new Exception("Problem saving changes");
             }
         }
     }
-    
+
 }
