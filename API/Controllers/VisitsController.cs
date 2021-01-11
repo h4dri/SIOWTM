@@ -57,8 +57,11 @@ namespace API.Controllers
         {
             return await _mediator.Send(new Unattend.Command{Id = id});
         }
-
-
-
+        
+        [HttpGet("categories")]
+        public async Task<ActionResult<string[]>> Categories()
+        {
+            return await _mediator.Send(new Categories.Query());
+        }
     }
 }
