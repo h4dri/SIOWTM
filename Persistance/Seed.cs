@@ -75,6 +75,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(2),
                         Description = "Visit 2 months in future",
                         Category = "kardiologia",
+                        DocName = "doctor1",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -97,6 +98,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 1 months in future",
                         Category = "kardiologia",
+                        DocName = "doctor1",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -119,6 +121,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 1 month in future",
                         Category = "kardiologia",
+                        DocName = "doctor1",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -141,6 +144,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 1 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -163,6 +167,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(2),
                         Description = "Visit 2 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -185,6 +190,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(2),
                         Description = "Visit 2 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -207,6 +213,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(4),
                         Description = "Visit 4 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -229,6 +236,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(3),
                         Description = "Visit 3 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -251,6 +259,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(5),
                         Description = "Visit 5 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -273,6 +282,7 @@ namespace Persistence
                         Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 8 months in future",
                         Category = "stomatologia",
+                        DocName = "doctor2",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit

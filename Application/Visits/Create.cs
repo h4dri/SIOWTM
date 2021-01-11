@@ -22,6 +22,7 @@ namespace Application.Visits
             public string Description { get; set; }
             public string Category { get; set; }
             public DateTime Date { get; set; } 
+            public string DocName { get; set; } 
         }
  
         public class CommandValidator : AbstractValidator<Command>
@@ -32,6 +33,7 @@ namespace Application.Visits
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Category).NotEmpty();
                 RuleFor(x => x.Date).NotEmpty(); 
+                RuleFor(x => x.DocName).NotEmpty(); 
             }
         }
 
@@ -53,7 +55,8 @@ namespace Application.Visits
                     Title = request.Title,
                     Description = request.Description,
                     Category = request.Category,
-                    Date = request.Date
+                    Date = request.Date,
+                    DocName = request.DocName
                 };
 
                 _context.Visits.Add(visit);
@@ -61,7 +64,7 @@ namespace Application.Visits
                 var user = await _context.Users.SingleOrDefaultAsync(x => 
                     x.UserName == _userAccessor.GetCurrentUsername());
 
-                var doctor = await _context.Users.Where(d => d.IsDoctor == true).FirstAsync();
+                var doctor = await _context.Users.SingleOrDefaultAsync(d => d.UserName == request.DocName);
 
                 var attendee = new UserVisit
                 {

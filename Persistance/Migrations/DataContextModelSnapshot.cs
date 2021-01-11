@@ -31,6 +31,9 @@ namespace Persistance.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DocName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
@@ -154,6 +157,9 @@ namespace Persistance.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DocName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")

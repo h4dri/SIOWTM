@@ -17,7 +17,9 @@ namespace Application.Visits
                     public string Title {get;set;}
                     public string Description {get;set;}
                     public string Category {get;set;}
-                    public DateTime? Date {get;set;} 
+                    public DateTime? Date {get;set;}  
+                    public String DocName {get;set;}  
+                    
                 }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -28,6 +30,8 @@ namespace Application.Visits
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Category).NotEmpty();
                 RuleFor(x => x.Date).NotEmpty(); 
+                RuleFor(x => x.DocName).NotEmpty(); 
+                
             }
         }
         
@@ -50,6 +54,7 @@ namespace Application.Visits
                         visit.Description = request.Description ?? visit.Description;
                         visit.Category = request.Category ?? visit.Category;
                         visit.Date = request.Date ?? visit.Date;
+                        visit.DocName = request.DocName ?? visit.DocName;
 
                         var success = await _context.SaveChangesAsync() > 0;
         

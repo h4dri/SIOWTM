@@ -41,7 +41,8 @@ namespace Persistance.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     DisplayName = table.Column<string>(nullable: true),
-                    IsDoctor = table.Column<bool>(nullable: false)
+                    IsDoctor = table.Column<bool>(nullable: false),
+                    DocName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,7 +70,8 @@ namespace Persistance.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false)
+                    Date = table.Column<DateTime>(nullable: false),
+                    DocName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
