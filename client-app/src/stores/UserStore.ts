@@ -1,6 +1,5 @@
 import { action, computed, observable, runInAction } from 'mobx';
 import agent from '../api/agent';
-import Home from '../components/Home';
 import { IUser, IUserFromValues } from '../models/UserModel';
 import { RooteStore } from './RootStore';
 
@@ -32,5 +31,17 @@ export default class UserStore{
     @action logout = () => {
         this.rootStore.commonStore.setToken(null);
         this.user = null;
+    }
+
+    @action getCurrentUser = async () => {
+        try{
+            const user = await agent.User.current();
+            runInAction(() =>{
+                this.user = user;
+            })
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
     }
 }

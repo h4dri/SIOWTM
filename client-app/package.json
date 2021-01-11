@@ -15,6 +15,7 @@
     "@types/webpack-env": "^1.15.3",
     "axios": "^0.21.1",
     "mobx": "^6.0.4",
+    "mobx-react-lite": "^3.1.6",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

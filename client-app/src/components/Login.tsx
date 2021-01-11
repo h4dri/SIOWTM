@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/Login.css';
 import userSvg from '../resources/user.svg';
 import Header from './Header';
@@ -18,6 +18,12 @@ function Login() {
         email: login,
         password: password
     };
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('jwt');
+        console.log(token)
+        token == "null" ? console.log("logowanie") : window.open("/customerPanel", "_self")
+    }, []);
 
     function handleChangeLogin(event: React.ChangeEvent<HTMLInputElement>) {
         setLogin(event.target.value);
