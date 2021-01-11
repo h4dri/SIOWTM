@@ -9,6 +9,7 @@ import { RootStoreContext } from '../stores/RootStore';
 
 function CustomerPanel() {
     const rootStore = useContext(RootStoreContext);
+    const {isLoggedIn, user} = rootStore.userStore;
 
     const [firstName, setFirstName] = useState('Adam');
     const [lastName, setLastName] = useState('Padżet');
@@ -68,7 +69,7 @@ function CustomerPanel() {
     return (
         <>
             <div id="customerPanel">
-                <HeaderCP firstName={firstName} lastName={lastName} isDoctor={false} />
+                <HeaderCP firstName={user?.username} lastName={lastName} isDoctor={false} />
 
                 <div id="customerPanelContent">
                     <div className="customerPanelBlock left top">

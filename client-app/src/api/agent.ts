@@ -4,6 +4,27 @@ import { IVisit } from '../models/VisitModel';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.request.use((config) => {
+    const token = window.localStorage.getItem('jwt');
+    if (token) config.headers.Authorization = 'Bearer ${token}';
+    return config
+}, error =>{
+    return Promise.reject(error);
+})
+
+axios.interceptors.response.use(undefined, (error) => {
+    if (error.message === "Network Error" && !error.response) {
+        console.error('Network error - make sure API is running!')
+    }
+
+    const {status, data, config} = error.response;
+    if (status == 401) {
+        console.log("Brak dostępu!");
+    }
+
+    throw error;
+})
+
 const responseBody = (response: AxiosResponse) => response.data;
 
 const sleep = (ms: number) => (response: AxiosResponse) =>

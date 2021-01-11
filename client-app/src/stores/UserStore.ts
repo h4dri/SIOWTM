@@ -1,5 +1,6 @@
-import { action, computed, observable, values } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import agent from '../api/agent';
+import Home from '../components/Home';
 import { IUser, IUserFromValues } from '../models/UserModel';
 import { RooteStore } from './RootStore';
 
@@ -16,10 +17,20 @@ export default class UserStore{
     @action login = async (values: IUserFromValues) => {
         try{
             const user = await agent.User.login(values);
-            this.user = user;
-            console.log(user);
+            runInAction(() =>{
+                this.user = user;
+            })
+            this.rootStore.commonStore.setToken(user.token)
+            //this.user.isDoctor ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
+            window.open("/customerPanel", "_self")
         } catch (error) {
             console.log(error)
+            throw error;
         }
+    }
+
+    @action logout = () => {
+        this.rootStore.commonStore.setToken(null);
+        this.user = null;
     }
 }

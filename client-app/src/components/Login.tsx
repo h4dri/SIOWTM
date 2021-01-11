@@ -10,6 +10,7 @@ function Login() {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [errorText, setErrorText] = useState('');
     const [buttonStatus, setButtonStatus] = useState(true);
     const [isdoctor, setIsDoctor] = useState(false);
 
@@ -28,9 +29,10 @@ function Login() {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault(); 
-        rootStore.userStore.login(values)
-        console.log(login + " " + password);
-        //isdoctor ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
+        rootStore.userStore.login(values).catch(error => {
+            setErrorText("Dane niepoprawne!")
+        })
+        setErrorText("");
     }
 
     function checkButtonStatus() {
@@ -60,6 +62,7 @@ function Login() {
                             <div id="loginInput">
                                 <input type="password" value={password} onChange={handleChangePassword} />
                             </div>
+                            <p style={{ color: '#FF0000' }}>{errorText}</p>
                         </label>
                         <div id="loginButton">
                             <input type="submit" value="Zaloguj" disabled={buttonStatus} />
