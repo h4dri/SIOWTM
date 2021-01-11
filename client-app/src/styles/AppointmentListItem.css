@@ -1,0 +1,110 @@
+#appointmentsItemContainer{
+    width: calc(100% - 20px);
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #ededed50;
+}
+
+#appointmentsItemContainer #mainContent{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+#appointmentsItemContainer #mainContent:hover{
+    cursor: pointer;
+}
+
+#appointmentsItemContainer #mainContent #title{
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+}
+
+#appointmentsItemContainer #mainContent #startDateShort{
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+}
+
+#appointmentsItemContainer #mainContent #showHideButton{
+    width: calc(10% - 10px); 
+    margin: 0 10px 0 0;
+    padding: 0;
+    display: block;
+    float: left;
+    text-align: center;
+}
+
+#appointmentsItemContainer #showableContent{
+    width: 500px;
+    min-height: 300px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 250px);
+    background: #323232;
+    box-shadow: 0px 0px 20px #565656;
+    z-index: 60;
+}
+
+#appointmentsItemContainer #showableContent #description{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#appointmentsItemContainer #showableContent #description p{
+    margin: 0;
+    padding: 0;
+}
+
+#appointmentsItemContainer #showableContent #description #descriptionContent{
+    width: calc(95% - 1px);
+    margin: 5px 0 10px 2.5%;
+    padding: 0 0 0 2.5%;
+    border-left: 1px solid #ededed;
+}
+
+#appointmentsItemContainer #showableContent #startDateLong{
+    width: 50%;
+    display: block;
+    float: left;
+}
+
+#appointmentsItemContainer #showableContent #location{
+    width: 50%;
+    display: block;
+    float: left;
+}
+
+#appointmentsItemContainer #showableContent #doctor{
+    width: 50%;
+    display: block;
+    float: right;
+}
+
+@media only screen and (max-width: 1000px) {
+    #appointmentsItemContainer #showableContent{
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: unset;
+        top: calc(50% - 150px);
+        left: calc(50% - 250px);
+        background: #323232;
+        z-index: 60;
+    }
+}

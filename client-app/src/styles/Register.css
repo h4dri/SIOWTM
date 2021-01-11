@@ -1,0 +1,118 @@
+#register{
+    width: 60%;
+    margin: 50px auto;
+    padding: 0;
+    background: #323232;
+    color: #ededed;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px #565656;
+}
+
+#register a{
+    text-decoration: none;
+    color: #ededed;
+}
+
+#register #registerImg{
+    width: 10%;
+    margin: 0 auto;
+}
+
+#register #registerImg img{
+    margin: 50px 0 10px;
+    width: 100%;
+}
+
+#register #registerForm{
+    width: calc(100% - 200px);
+    margin: 0 100px;
+    overflow: hidden;
+}
+
+#register #registerForm #registerFormContent{
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#register #registerForm #registerFormContent p{
+    margin: 10px 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+#register #registerForm #registerFormContent #registerInput{
+    width: calc(50% - 20px);
+    display: block;
+    float: left;
+    margin: 0 10px;
+}
+
+#register #registerForm #registerFormContent #registerInput input{
+    width: 95%;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#register #registerForm #registerFormContent #registerInput input:focus{
+    outline:none;
+}
+
+#register #registerForm #registerButton{
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+}
+
+#register #registerForm #registerButton input{
+    margin: 10px auto;
+    display: block;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#register #registerForm #registerButton input:focus{
+    outline: none;
+}
+
+#register #registerForm #registerButton input:disabled{
+    opacity: 0.5;
+}
+
+@media only screen and (max-width: 1000px) {
+    #register{
+        width: 70%;
+    }
+
+    #register #registerForm{
+        width: calc(100% - 150px);
+        margin: 0 75px;
+    }
+
+    #register #registerForm #registerFormContent #registerInput{
+        width: calc(100% - 20px);
+    }
+  }
+
+@media only screen and (max-width: 700px) {
+    #register{
+        width: 80%;
+    }
+
+    #register #registerForm{
+        width: calc(100% - 100px);
+        margin: 0 50px;
+    }
+  }

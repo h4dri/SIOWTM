@@ -1,0 +1,42 @@
+#home{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+#home img{
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#home #homeText{
+    background: #323232;
+    color: #ededed;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#home #homeText h1{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+#home #homeText h2{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+#home #homeText p{
+    text-align: left;
+    margin: 10px 50px;
+}
+
+#home #homeText p:last-child{
+    margin-bottom: 50px;
+}

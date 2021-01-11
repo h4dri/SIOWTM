@@ -1,0 +1,162 @@
+#headerCP{
+    margin: 0;
+    width: 100%;
+    display: block;
+    height: 50px;
+    background: #323232;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px #565656;
+}
+
+#headerCP #headerCPText{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 10px;
+    text-transform: uppercase;
+    color: #ededed;
+}
+
+#headerCP #headerCPText h1{
+    margin: 0;
+    padding: 0;
+}
+
+#headerCP #headerCPText h1:hover{
+    color: #bcbcbc;
+}
+
+#headerCP #headerCPImgDataArea{
+    display: block;
+    float: right;
+    height: 50px;
+    overflow: hidden;
+    width: 286px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor{
+    display: block;
+    float: right;
+    height: 50px;
+    overflow: hidden;
+    width: 306px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor #headerCPDataDoctor{
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    margin: 0 10px;
+    width: 130px;
+}
+
+#headerCP #headerCPImgDataArea #headerCPDataCustomer{
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    margin: 0 10px;
+    width: 110px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor #headerCPImg{
+    display: block;
+    float: left;
+    height: 50px;
+    margin: 0;
+    width: 50px;
+}
+
+#headerCP #headerCPImgDataArea #headerCPImg{
+    display: block;
+    float: left;
+    height: 50px;
+    margin: 0;
+    width: 50px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor #headerCPImg img{
+    height: calc(100% - 10px);
+    padding: 5px;
+}
+
+#headerCP #headerCPImgDataArea #headerCPImg img{
+    height: calc(100% - 10px);
+    padding: 5px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor #headerCPLogout{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 10px;
+    text-transform: uppercase;
+    color: #ededed;
+    width: 75px;
+    border-left: 1px solid #ededed;
+    padding: 0 10px;
+}
+
+#headerCP #headerCPImgDataArea #headerCPLogout{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 10px;
+    text-transform: uppercase;
+    color: #ededed;
+    width: 75px;
+    border-left: 1px solid #ededed;
+    padding: 0 10px;
+}
+
+#headerCP #headerCPImgDataAreaDoctor #headerCPLogout:hover a{
+    color: #bcbcbc;
+}
+
+#headerCP #headerCPImgDataArea #headerCPLogout:hover a{
+    color: #bcbcbc;
+}
+
+@media only screen and (max-width: 700px) {
+    #headerCP{
+        float: none;
+        height: 150px;
+        text-align: center;
+    }
+
+    #headerCP #headerCPText{
+        float: none;
+    }
+
+    #headerCP #headerCPImgDataArea{
+        margin: 0 auto;
+        float: none;
+        height: 100px;
+        width: 180px;
+    }
+
+    #headerCP #headerCPImgDataAreaDoctor{
+        margin: 0 auto;
+        float: none;
+        height: 100px;
+        width: 200px;
+    }
+
+    #headerCP #headerCPImgDataArea #headerCPLogout{
+        margin: 0 auto;
+        float: none;
+        border-left: none;
+    }
+
+    #headerCP #headerCPImgDataAreaDoctor #headerCPLogout{
+        margin: 0 auto;
+        float: none;
+        border-left: none;
+    }
+  }
