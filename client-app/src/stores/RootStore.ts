@@ -3,6 +3,7 @@ import { configure } from 'mobx';
 import UserStore from "./UserStore";
 import CommonStore from "./CommonStore";
 import VisitsStore from "./VisitsStore";
+import CategoriesStore from "./CategoriesStore";
 
 configure({ enforceActions: 'always' });
 
@@ -10,11 +11,13 @@ export class RooteStore {
     userStore: UserStore;
     visitsStore: VisitsStore;
     commonStore: CommonStore;
+    categoriesStore: CategoriesStore;
     
     constructor(){
         this.userStore = new UserStore(this);
         this.visitsStore = new VisitsStore(this);
         this.commonStore = new CommonStore(this);
+        this.categoriesStore = new CategoriesStore(this);
     }
 }
 

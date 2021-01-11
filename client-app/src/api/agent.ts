@@ -51,7 +51,12 @@ const User = {
     register: (user: IUserFromValues): Promise<IUser> => requests.post('/user/register', user)
 }
 
+const Categories = {
+    list: (): Promise<String[]> => requests.get('/visits/categories')
+}
+
 export default {
     Visits, 
-    User
+    User,
+    Categories
 }

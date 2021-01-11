@@ -1,13 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { RootStoreContext } from '../stores/RootStore';
 import '../styles/CreateVisitStyle.css';
 
 const CreateVisitComponent = () => {
+    const rootStore = useContext(RootStoreContext)
+    
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [doctorDisplayName, setDoctorDisplayName] = useState('');
     const [buttonStatus, setButtonStatus] = useState(true);
+    const [catList, setCatList] = useState<Array<String>>([])
+
+    // const visitModelElement: IVisit = {
+    //     title: title,
+    //     description: description,
+    //     category: category
+    // };
+
+    useEffect(() => {
+        rootStore.categoriesStore.loadCategories()
+            .then(() => {
+                setCatList(rootStore.categoriesStore.categories)
+            });
+    }, [rootStore.categoriesStore]);
 
     function handleChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value);
@@ -21,8 +38,11 @@ const CreateVisitComponent = () => {
         setDescription(event.target.value);
     }
 
-    function handleChangeCategory(event: React.ChangeEvent<HTMLInputElement>) {
-        setCategory(event.target.value);
+    function handleChangeCategory() {
+        const e = document.getElementById("categories") as HTMLSelectElement
+        var CurValue = e.options[e.selectedIndex].value;
+        setCategory(CurValue)
+        checkButtonStatus()
     }
 
     function handleChangeDoctorDisplayName(event: React.ChangeEvent<HTMLInputElement>) {
@@ -69,7 +89,12 @@ const CreateVisitComponent = () => {
                     </div>
                     <div className="createVisitElement">
                         <p>Kategoria:</p>
-                        <input type="text" value={category} onChange={handleChangeCategory} />
+                        <select id="categories" onChange={handleChangeCategory}>
+                            <option value=""></option>
+                            {catList.map((item, key) => {
+                                return <option key={key} value={item.toString()}>{item.toString()}</option>
+                            })}
+                        </select>
                     </div>
                     <div className="createVisitElement">
                         <p>Lekarz:</p>

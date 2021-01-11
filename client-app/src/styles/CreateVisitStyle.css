@@ -21,7 +21,7 @@
     font-size: 20px;
 }
 
-#createVisitArea .createVisitElement input{
+#createVisitArea .createVisitElement input, select{
     width: 95%;
     padding: 4px 8px;
     font-size: 16px;

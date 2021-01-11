@@ -24,8 +24,6 @@ const CustomerPanel = () => {
             .then(() => {
                 setIsLoading(false)
                 setAppointmentsList(rootStore.visitsStore.visits)
-                console.log(1)
-                console.log(appointmentsList[0].attendees)
                 const d = document.getElementById('appointmentsList')!
                 const h = d.clientHeight - 83
                 const noeaop = Number(Math.floor(h / 51))
