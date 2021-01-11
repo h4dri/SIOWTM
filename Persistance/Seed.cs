@@ -4,141 +4,284 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Identity;
+using Persistance;
 
-namespace Persistance
+namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
+        public static async Task SeedData(DataContext context,
+            UserManager<AppUser> userManager)
         {
-            
-            if(!userManager.Users.Any())
+            if (!userManager.Users.Any())
             {
                 var users = new List<AppUser>
                 {
                     new AppUser
                     {
+                        Id = "a",
                         DisplayName = "Bob",
                         UserName = "bob",
                         Email = "bob@test.com"
                     },
                     new AppUser
                     {
-                        DisplayName = "Tom",
-                        UserName = "tom",
-                        Email = "tom@test.com"
-                    },
-                    new AppUser
-                    {
+                        Id = "b",
                         DisplayName = "Jane",
                         UserName = "jane",
                         Email = "jane@test.com"
                     },
+                    new AppUser
+                    {
+                        Id = "c",
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@test.com"
+                    },
                 };
-                foreach(var user in users)
+
+                foreach (var user in users)
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
             }
 
-            if(!context.Visits.Any())
+            if (!context.Visits.Any())
             {
                 var visits = new List<Visit>
                 {
                     new Visit
                     {
-                        Title = "Wizyta 1",
+                        Title = "Past Visit 1",
                         Date = DateTime.Now.AddMonths(-2),
-                        Description = "EKG",
+                        Description = "Visit 2 months ago",
                         Category = "kardiolog",
                         DoctorId = 1,
                         PatientId = 1,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-2)
+                            }
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 2",
+                        Title = "Past Visit 2",
                         Date = DateTime.Now.AddMonths(-1),
-                        Description = "Ból serca",
+                        Description = "Visit 1 month ago",
                         Category = "kardiolog",
                         DoctorId = 1,
                         PatientId = 1,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(-1)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(-1)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 3",
+                        Title = "Future Visit 1",
                         Date = DateTime.Now.AddMonths(1),
-                        Description = "Ból serca",
+                        Description = "Visit 1 month in future",
                         Category = "kardiolog",
                         DoctorId = 1,
                         PatientId = 2,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(1)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(1)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 4",
+                        Title = "Future Visit 2",
                         Date = DateTime.Now.AddMonths(2),
-                        Description = "EKG",
+                        Description = "Visit 2 months in future",
                         Category = "kardiolog",
                         DoctorId = 1,
                         PatientId = 2,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "c",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(2)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(2)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 5",
+                        Title = "Future Visit 3",
                         Date = DateTime.Now.AddMonths(3),
-                        Description = "EKG",
+                        Description = "Visit 3 months in future",
                         Category = "kardiolog",
                         DoctorId = 1,
                         PatientId = 3,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(3)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "c",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(3)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 6",
+                        Title = "Future Visit 4",
                         Date = DateTime.Now.AddMonths(4),
-                        Description = "zeby do leczenia",
+                        Description = "Visit 4 months in future",
                         Category = "dentysta",
                         DoctorId = 2,
                         PatientId = 3,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(4)
+                            }
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 7",
+                        Title = "Future Visit 5",
                         Date = DateTime.Now.AddMonths(5),
-                        Description = "zeby do wyrwania",
+                        Description = "Visit 5 months in future",
                         Category = "dentysta",
                         DoctorId = 2,
                         PatientId = 4,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "c",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(5)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(5)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 8",
+                        Title = "Future Visit 6",
                         Date = DateTime.Now.AddMonths(6),
-                        Description = "badanie kontrolne",
+                        Description = "Visit 6 months in future",
                         Category = "dentysta",
                         DoctorId = 2,
                         PatientId = 4,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(6)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(6)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 9",
+                        Title = "Future Visit 7",
                         Date = DateTime.Now.AddMonths(7),
-                        Description = "brak zebow",
+                        Description = "Visit 7 months in future",
                         Category = "dentysta",
                         DoctorId = 2,
                         PatientId = 5,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(7)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "c",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(7)
+                            },
+                        }
                     },
                     new Visit
                     {
-                        Title = "Wizyta 10",
+                        Title = "Future Visit 8",
                         Date = DateTime.Now.AddMonths(8),
-                        Description = "wyrwanie zebow",
+                        Description = "Visit 8 months in future",
                         Category = "dentysta",
                         DoctorId = 2,
                         PatientId = 5,
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(8)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(8)
+                            },
+                        }
                     }
                 };
-                context.Visits.AddRange(visits);
-                
-                context.SaveChanges();
+
+                await context.Visits.AddRangeAsync(visits);
+                await context.SaveChangesAsync();
             }
         }
     }
