@@ -57,41 +57,24 @@
     z-index: 60;
 }
 
-#appointmentsItemContainer #showableContent #description{
-    width: 100%;
-    margin: 0;
-    padding: 0;
+#appointmentsItemContainer #showableContent .showableContentArea{
+    width: calc(95% - 1px);
+    padding: 1% 2.5%;
+    display: block;
+    float: left;
     overflow: hidden;
 }
 
-#appointmentsItemContainer #showableContent #description p{
+#appointmentsItemContainer #showableContent .showableContentArea p{
     margin: 0;
     padding: 0;
 }
 
-#appointmentsItemContainer #showableContent #description #descriptionContent{
+#appointmentsItemContainer #showableContent .showableContentArea #descriptionContent{
     width: calc(95% - 1px);
     margin: 5px 0 10px 2.5%;
     padding: 0 0 0 2.5%;
     border-left: 1px solid #ededed;
-}
-
-#appointmentsItemContainer #showableContent #startDateLong{
-    width: 50%;
-    display: block;
-    float: left;
-}
-
-#appointmentsItemContainer #showableContent #location{
-    width: 50%;
-    display: block;
-    float: left;
-}
-
-#appointmentsItemContainer #showableContent #doctor{
-    width: 50%;
-    display: block;
-    float: right;
 }
 
 @media only screen and (max-width: 1000px) {
