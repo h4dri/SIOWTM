@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { configure, observable } from 'mobx';
+import { configure } from 'mobx';
 import UserStore from "./UserStore";
 import CommonStore from "./CommonStore";
 import VisitsStore from "./VisitsStore";

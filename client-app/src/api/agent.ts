@@ -17,8 +17,8 @@ axios.interceptors.response.use(undefined, (error) => {
         console.error('Network error - make sure API is running!')
     }
 
-    const {status, data, config} = error.response;
-    if (status == 401) {
+    const {status} = error.response;
+    if (status === 401) {
         console.log("Brak dostępu!");
     }
 
@@ -45,7 +45,7 @@ const Visits = {
     delete: (id: string) => requests.del(`/visits/${id}`)
 }
 
-const User ={
+const User = {
     current: (): Promise<IUser> => requests.get('/user'),
     login: (user: IUserFromValues): Promise<IUser> => requests.post('/user/login', user),
     register: (user: IUserFromValues): Promise<IUser> => requests.post('/user/register', user)

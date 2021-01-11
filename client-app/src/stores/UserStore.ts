@@ -20,8 +20,7 @@ export default class UserStore{
                 this.user = user;
             })
             this.rootStore.commonStore.setToken(user.token)
-            //this.user.isDoctor ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
-            window.open("/customerPanel", "_self")
+            this.user!.isDoctor === true ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
         } catch (error) {
             console.log(error)
             throw error;

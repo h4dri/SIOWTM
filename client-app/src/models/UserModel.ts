@@ -3,6 +3,7 @@ export interface IUser {
     displayName: string;
     token: string;
     image?: string;
+    isDoctor: boolean;
 }
 
 export interface IUserFromValues {
@@ -10,4 +11,5 @@ export interface IUserFromValues {
     password: string;
     displayName?: string;
     username?: string;
+    isDoctor?: boolean;
 }

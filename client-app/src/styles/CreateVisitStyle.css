@@ -1,0 +1,85 @@
+#createVisitArea{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#createVisitArea .createVisitElement{
+    width: calc(45% - 1px);
+    padding: 1% 2.5%;
+    margin: 0;
+    overflow: hidden;
+    float: left;
+}
+
+#createVisitArea .createVisitElement p{
+    text-align: left;
+    margin: 5px 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+#createVisitArea .createVisitElement input{
+    width: 95%;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#createVisitArea .createVisitElement input:focus{
+    outline:none;
+}
+
+#createVisitArea #createVisitButton{
+    display: block;
+    width: calc(95% - 1px);
+    margin: 20px auto;
+    padding: 0 2.5%;
+    float: left;
+    text-align: center;
+}
+
+#createVisitArea #createVisitButton input{
+    margin: 10px auto;
+    display: block;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#createVisitArea #createVisitButton input:focus{
+    outline: none;
+}
+
+#createVisitArea #createVisitButton input:disabled{
+    opacity: 0.5;
+}
+
+@media only screen and (max-width: 1000px) {
+    #createVisitArea{
+        width: calc(100% - 150px);
+        margin: 0 75px;
+    }
+
+    #createVisitArea .createVisitElement{
+        width: calc(100% - 20px);
+    }
+  }
+
+@media only screen and (max-width: 700px) {
+    #createVisitArea{
+        width: calc(100% - 100px);
+        margin: 0 50px;
+    }
+  }

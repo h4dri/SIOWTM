@@ -22,7 +22,7 @@ function Login() {
     useEffect(() => {
         const token = window.localStorage.getItem('jwt');
         console.log(token)
-        token == "null" ? console.log("logowanie") : window.open("/customerPanel", "_self")
+        token === "null" ? console.log("logowanie") : window.open("/customerPanel", "_self")
     }, []);
 
     function handleChangeLogin(event: React.ChangeEvent<HTMLInputElement>) {

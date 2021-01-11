@@ -4,6 +4,5 @@ export interface IVisit{
     description: string;
     category: string;
     date: Date;
-    doctorId: number;
-    patientId: number;
+    attendees: [];
 }

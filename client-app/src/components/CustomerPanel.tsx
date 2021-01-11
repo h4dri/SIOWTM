@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import '../styles/CustomerPanel.css';
 import HeaderCP from './HeaderCP';
+import CreateVisitComponent from './CreateVisitComponent';
 import AppointmentListItem from './AppointmentListItem';
 import { IVisit } from '../models/VisitModel';
 import { observer } from 'mobx-react-lite';
@@ -23,6 +24,8 @@ const CustomerPanel = () => {
             .then(() => {
                 setIsLoading(false)
                 setAppointmentsList(rootStore.visitsStore.visits)
+                console.log(1)
+                console.log(appointmentsList[0].attendees)
                 const d = document.getElementById('appointmentsList')!
                 const h = d.clientHeight - 83
                 const noeaop = Number(Math.floor(h / 51))
@@ -43,7 +46,8 @@ const CustomerPanel = () => {
                         <div className="blockTopic"><h2>Subskrypcja</h2></div>
                     </div>
                     <div className="customerPanelBlock right top">
-                        <div className="blockTopic"><h2>Wizyta</h2></div>
+                        <div className="blockTopic"><h2>Stwórz wizytę</h2></div>
+                        <CreateVisitComponent />
                     </div>
                     <div id="appointmentsList" className="customerPanelBlock left bottom">
                         <div className="blockTopic"><h2>Lista wizyt</h2></div>
