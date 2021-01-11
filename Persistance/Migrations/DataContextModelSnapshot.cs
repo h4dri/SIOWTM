@@ -38,6 +38,9 @@ namespace Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("IsDoctor")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
 
@@ -93,6 +96,9 @@ namespace Persistance.Migrations
 
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDoctor")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsHost")
                         .HasColumnType("INTEGER");

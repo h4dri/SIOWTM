@@ -60,6 +60,7 @@ namespace Application.User
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),
                         UserName = user.UserName,
+                        IsDoctor = user.IsDoctor,
                         Image = null
                     };
                 }

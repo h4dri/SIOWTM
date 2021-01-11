@@ -40,7 +40,8 @@ namespace Persistance.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    DisplayName = table.Column<string>(nullable: true)
+                    DisplayName = table.Column<string>(nullable: true),
+                    IsDoctor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,7 +189,8 @@ namespace Persistance.Migrations
                     AppUserId = table.Column<string>(nullable: false),
                     VisitId = table.Column<Guid>(nullable: false),
                     DateJoined = table.Column<DateTime>(nullable: false),
-                    IsHost = table.Column<bool>(nullable: false)
+                    IsHost = table.Column<bool>(nullable: false),
+                    IsDoctor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

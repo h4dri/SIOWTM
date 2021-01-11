@@ -23,6 +23,7 @@ namespace Application.User
             public string Username { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
+            public bool IsDoctor { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -33,6 +34,7 @@ namespace Application.User
                 RuleFor(x => x.Username).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty().EmailAddress();
                 RuleFor(x => x.Password).Password();
+                RuleFor(x => x.IsDoctor).NotEmpty();
             }
         }
 
@@ -61,7 +63,8 @@ namespace Application.User
                 {
                     DisplayName = request.DisplayName,
                     Email = request.Email,
-                    UserName = request.Username
+                    UserName = request.Username,
+                    IsDoctor = request.IsDoctor
                 };
 
                 
@@ -74,6 +77,7 @@ namespace Application.User
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),
                         UserName = user.UserName,
+                        IsDoctor = user.IsDoctor,
                         Image = null
                     };
                 } 

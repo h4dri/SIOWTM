@@ -22,22 +22,41 @@ namespace Persistence
                         Id = "a",
                         DisplayName = "Bob",
                         UserName = "bob",
-                        Email = "bob@test.com"
+                        Email = "bob@test.com",
+                        IsDoctor = false
                     },
                     new AppUser
                     {
                         Id = "b",
                         DisplayName = "Jane",
                         UserName = "jane",
-                        Email = "jane@test.com"
+                        Email = "jane@test.com",
+                        IsDoctor = false
                     },
                     new AppUser
                     {
                         Id = "c",
                         DisplayName = "Tom",
                         UserName = "tom",
-                        Email = "tom@test.com"
+                        Email = "tom@test.com",
+                        IsDoctor = false
                     },
+                    new AppUser
+                    {
+                        Id = "d",
+                        DisplayName = "doctor1",
+                        UserName = "doctor1",
+                        Email = "doctor1@doctor.com",
+                        IsDoctor = true
+                    },
+                    new AppUser
+                    {
+                        Id = "e",
+                        DisplayName = "doctor2",
+                        UserName = "doctor2",
+                        Email = "doctor2@doctor.com",
+                        IsDoctor = true
+                    }
                 };
 
                 foreach (var user in users)
@@ -52,59 +71,65 @@ namespace Persistence
                 {
                     new Visit
                     {
-                        Title = "Past Visit 1",
-                        Date = DateTime.Now.AddMonths(-2),
-                        Description = "Visit 2 months ago",
-                        Category = "kardiolog",
+                        Title = "Visit 1",
+                        Date = DateTime.Now.AddMonths(2),
+                        Description = "Visit 2 months in future",
+                        Category = "kardiologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
                                 AppUserId = "a",
                                 IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(-2)
+                                DateJoined = DateTime.Now.AddMonths(2)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "d",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(2)
                             }
                         }
                     },
                     new Visit
                     {
-                        Title = "Past Visit 2",
-                        Date = DateTime.Now.AddMonths(-1),
-                        Description = "Visit 1 month ago",
-                        Category = "kardiolog",
+                        Title = "Visit 2",
+                        Date = DateTime.Now.AddMonths(1),
+                        Description = "Visit 1 months in future",
+                        Category = "kardiologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
                                 AppUserId = "b",
                                 IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(-1)
+                                DateJoined = DateTime.Now.AddMonths(1)
                             },
                             new UserVisit
                             {
-                                AppUserId = "a",
+                                AppUserId = "d",
                                 IsHost = false,
-                                DateJoined = DateTime.Now.AddMonths(-1)
+                                DateJoined = DateTime.Now.AddMonths(1)
                             },
                         }
                     },
                     new Visit
                     {
-                        Title = "Future Visit 1",
+                        Title = "Visit 3",
                         Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 1 month in future",
-                        Category = "kardiolog",
+                        Category = "kardiologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
-                                AppUserId = "b",
+                                AppUserId = "c",
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(1)
                             },
                             new UserVisit
                             {
-                                AppUserId = "a",
+                                AppUserId = "d",
                                 IsHost = false,
                                 DateJoined = DateTime.Now.AddMonths(1)
                             },
@@ -112,59 +137,65 @@ namespace Persistence
                     },
                     new Visit
                     {
-                        Title = "Future Visit 2",
+                        Title = "Visit 4",
+                        Date = DateTime.Now.AddMonths(1),
+                        Description = "Visit 1 months in future",
+                        Category = "stomatologia",
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "a",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(2)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "e",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(2)
+                            },
+                        }
+                    },
+                    new Visit
+                    {
+                        Title = "Visit 5",
                         Date = DateTime.Now.AddMonths(2),
                         Description = "Visit 2 months in future",
-                        Category = "kardiolog",
+                        Category = "stomatologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
-                                AppUserId = "c",
+                                AppUserId = "a",
                                 IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(2)
+                                DateJoined = DateTime.Now.AddMonths(3)
                             },
                             new UserVisit
                             {
-                                AppUserId = "a",
+                                AppUserId = "e",
                                 IsHost = false,
-                                DateJoined = DateTime.Now.AddMonths(2)
+                                DateJoined = DateTime.Now.AddMonths(3)
                             },
                         }
                     },
                     new Visit
                     {
-                        Title = "Future Visit 3",
-                        Date = DateTime.Now.AddMonths(3),
-                        Description = "Visit 3 months in future",
-                        Category = "kardiolog",
+                        Title = "Visit 6",
+                        Date = DateTime.Now.AddMonths(2),
+                        Description = "Visit 2 months in future",
+                        Category = "stomatologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
                                 AppUserId = "b",
                                 IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(3)
+                                DateJoined = DateTime.Now.AddMonths(4)
                             },
                             new UserVisit
                             {
-                                AppUserId = "c",
-                                IsHost = false,
-                                DateJoined = DateTime.Now.AddMonths(3)
-                            },
-                        }
-                    },
-                    new Visit
-                    {
-                        Title = "Future Visit 4",
-                        Date = DateTime.Now.AddMonths(4),
-                        Description = "Visit 4 months in future",
-                        Category = "dentysta",
-                        UserVisits = new List<UserVisit>
-                        {
-                            new UserVisit
-                            {
-                                AppUserId = "a",
+                                AppUserId = "e",
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(4)
                             }
@@ -172,65 +203,65 @@ namespace Persistence
                     },
                     new Visit
                     {
-                        Title = "Future Visit 5",
+                        Title = "Visit 7",
+                        Date = DateTime.Now.AddMonths(4),
+                        Description = "Visit 4 months in future",
+                        Category = "stomatologia",
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "b",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(5)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "e",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(5)
+                            },
+                        }
+                    },
+                    new Visit
+                    {
+                        Title = "Visit 8",
+                        Date = DateTime.Now.AddMonths(3),
+                        Description = "Visit 3 months in future",
+                        Category = "stomatologia",
+                        UserVisits = new List<UserVisit>
+                        {
+                            new UserVisit
+                            {
+                                AppUserId = "c",
+                                IsHost = true,
+                                DateJoined = DateTime.Now.AddMonths(6)
+                            },
+                            new UserVisit
+                            {
+                                AppUserId = "e",
+                                IsHost = false,
+                                DateJoined = DateTime.Now.AddMonths(6)
+                            },
+                        }
+                    },
+                    new Visit
+                    {
+                        Title = "Visit 9",
                         Date = DateTime.Now.AddMonths(5),
                         Description = "Visit 5 months in future",
-                        Category = "dentysta",
+                        Category = "stomatologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
                                 AppUserId = "c",
-                                IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(5)
-                            },
-                            new UserVisit
-                            {
-                                AppUserId = "b",
-                                IsHost = false,
-                                DateJoined = DateTime.Now.AddMonths(5)
-                            },
-                        }
-                    },
-                    new Visit
-                    {
-                        Title = "Future Visit 6",
-                        Date = DateTime.Now.AddMonths(6),
-                        Description = "Visit 6 months in future",
-                        Category = "dentysta",
-                        UserVisits = new List<UserVisit>
-                        {
-                            new UserVisit
-                            {
-                                AppUserId = "a",
-                                IsHost = true,
-                                DateJoined = DateTime.Now.AddMonths(6)
-                            },
-                            new UserVisit
-                            {
-                                AppUserId = "b",
-                                IsHost = false,
-                                DateJoined = DateTime.Now.AddMonths(6)
-                            },
-                        }
-                    },
-                    new Visit
-                    {
-                        Title = "Future Visit 7",
-                        Date = DateTime.Now.AddMonths(7),
-                        Description = "Visit 7 months in future",
-                        Category = "dentysta",
-                        UserVisits = new List<UserVisit>
-                        {
-                            new UserVisit
-                            {
-                                AppUserId = "a",
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(7)
                             },
                             new UserVisit
                             {
-                                AppUserId = "c",
+                                AppUserId = "e",
                                 IsHost = false,
                                 DateJoined = DateTime.Now.AddMonths(7)
                             },
@@ -238,21 +269,21 @@ namespace Persistence
                     },
                     new Visit
                     {
-                        Title = "Future Visit 8",
-                        Date = DateTime.Now.AddMonths(8),
+                        Title = "Visit 10",
+                        Date = DateTime.Now.AddMonths(1),
                         Description = "Visit 8 months in future",
-                        Category = "dentysta",
+                        Category = "stomatologia",
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
                             {
-                                AppUserId = "b",
+                                AppUserId = "c",
                                 IsHost = true,
                                 DateJoined = DateTime.Now.AddMonths(8)
                             },
                             new UserVisit
                             {
-                                AppUserId = "a",
+                                AppUserId = "e",
                                 IsHost = false,
                                 DateJoined = DateTime.Now.AddMonths(8)
                             },
