@@ -150,12 +150,6 @@ namespace Persistance.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 

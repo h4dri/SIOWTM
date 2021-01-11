@@ -17,9 +17,7 @@ namespace Application.Visits
                     public string Title {get;set;}
                     public string Description {get;set;}
                     public string Category {get;set;}
-                    public DateTime? Date {get;set;}
-                    public int? DoctorId {get;set;}
-                    public int? PatientId  {get;set;}
+                    public DateTime? Date {get;set;} 
                 }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -29,9 +27,7 @@ namespace Application.Visits
                 RuleFor(x => x.Title).NotEmpty();
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Category).NotEmpty();
-                RuleFor(x => x.Date).NotEmpty();
-                RuleFor(x => x.DoctorId).NotEmpty();
-                RuleFor(x => x.PatientId).NotEmpty();
+                RuleFor(x => x.Date).NotEmpty(); 
             }
         }
         
@@ -54,8 +50,6 @@ namespace Application.Visits
                         visit.Description = request.Description ?? visit.Description;
                         visit.Category = request.Category ?? visit.Category;
                         visit.Date = request.Date ?? visit.Date;
-                        visit.DoctorId = request.DoctorId ?? visit.DoctorId;
-                        visit.PatientId = request.PatientId ?? visit.PatientId;
 
                         var success = await _context.SaveChangesAsync() > 0;
         

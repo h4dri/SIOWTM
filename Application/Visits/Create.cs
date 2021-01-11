@@ -20,11 +20,9 @@ namespace Application.Visits
             public string Title { get; set; }
             public string Description { get; set; }
             public string Category { get; set; }
-            public DateTime Date { get; set; }
-            public int DoctorId { get; set; }
-            public int PatientId { get; set; }
+            public DateTime Date { get; set; } 
         }
-
+ 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
@@ -32,9 +30,7 @@ namespace Application.Visits
                 RuleFor(x => x.Title).NotEmpty();
                 RuleFor(x => x.Description).NotEmpty();
                 RuleFor(x => x.Category).NotEmpty();
-                RuleFor(x => x.Date).NotEmpty();
-                RuleFor(x => x.DoctorId).NotEmpty();
-                RuleFor(x => x.PatientId).NotEmpty();
+                RuleFor(x => x.Date).NotEmpty(); 
             }
         }
 
@@ -56,9 +52,7 @@ namespace Application.Visits
                     Title = request.Title,
                     Description = request.Description,
                     Category = request.Category,
-                    Date = request.Date,
-                    DoctorId = request.DoctorId,
-                    PatientId = request.PatientId
+                    Date = request.Date
                 };
 
                 _context.Visits.Add(visit);

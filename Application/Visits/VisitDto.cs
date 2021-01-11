@@ -12,9 +12,7 @@ namespace Application.Visits
         public string Title {get;set;}
         public string Description {get;set;}
         public string Category {get;set;}
-        public DateTime Date {get;set;}
-        public int DoctorId {get;set;}
-        public int PatientId  {get;set;}
+        public DateTime Date {get;set;} 
         [JsonPropertyName("attendees")]
         public ICollection<AttendeeDto> UserVisits {get; set;}
     }

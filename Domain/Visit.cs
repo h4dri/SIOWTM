@@ -11,8 +11,6 @@ namespace Domain
         public string Description {get;set;}
         public string Category {get;set;}
         public DateTime Date {get;set;}
-        public int DoctorId {get;set;}
-        public int PatientId  {get;set;}
         public virtual ICollection<UserVisit> UserVisits {get; set;}
 
     }

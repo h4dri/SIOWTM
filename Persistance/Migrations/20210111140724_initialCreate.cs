@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistance.Migrations
 {
-    public partial class AddedIdentity : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,34 @@ namespace Persistance.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Values",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Values", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Visits",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Visits", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +181,47 @@ namespace Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserVisits",
+                columns: table => new
+                {
+                    AppUserId = table.Column<string>(nullable: false),
+                    VisitId = table.Column<Guid>(nullable: false),
+                    DateJoined = table.Column<DateTime>(nullable: false),
+                    IsHost = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserVisits", x => new { x.AppUserId, x.VisitId });
+                    table.ForeignKey(
+                        name: "FK_UserVisits_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserVisits_Visits_VisitId",
+                        column: x => x.VisitId,
+                        principalTable: "Visits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Values",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Value 101" });
+
+            migrationBuilder.InsertData(
+                table: "Values",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "Value 102" });
+
+            migrationBuilder.InsertData(
+                table: "Values",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "Value 103" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -189,6 +258,11 @@ namespace Persistance.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserVisits_VisitId",
+                table: "UserVisits",
+                column: "VisitId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,10 +283,19 @@ namespace Persistance.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "UserVisits");
+
+            migrationBuilder.DropTable(
+                name: "Values");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Visits");
         }
     }
 }
