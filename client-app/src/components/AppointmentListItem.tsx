@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/AppointmentListItem.css';
 import { IVisit } from '../models/VisitModel';
 import Moment from 'moment';
 import 'moment/locale/pl'
+import { RootStoreContext } from '../stores/RootStore';
 
 function AppointmentListItem(props: { item: IVisit}) {
+    const rootStore = useContext(RootStoreContext)
+
     const [isShow, setIsShow] = useState(false);
 
     function handleShowHideButton(){
@@ -12,8 +15,12 @@ function AppointmentListItem(props: { item: IVisit}) {
     }
 
     function handleDeleteButton(){
-        console.log("DELETE!")
-        window.open("/customerPanel", "_self")
+        rootStore.visitsStore.deleteVisit(props.item.id)
+            .then(() => {
+                console.log("DELETE!")
+                console.log(props.item.id)
+                window.open("/customerPanel", "_self")
+            })
     }
 
     Moment.locale('pl')

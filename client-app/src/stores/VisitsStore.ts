@@ -25,4 +25,12 @@ export default class VisitsStore {
             this.isLoading = false;
         }
     }
+
+    @action deleteVisit = async (id: string) => {
+        try{
+            await agent.Visits.delete(id);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

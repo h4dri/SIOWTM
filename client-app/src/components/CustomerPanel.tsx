@@ -16,6 +16,7 @@ const CustomerPanel = () => {
     const [actualPage, setActualPage] = useState(0);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [numberOfElementsAtOnePage, setNumberOfElementsAtOnePage] = useState(0);
+    const [elementHeight, setElementHeight] = useState(0);
 
     useEffect(() => {
         rootStore.visitsStore.loadVisits()
@@ -26,6 +27,7 @@ const CustomerPanel = () => {
                 const h = d.clientHeight - 83
                 const noeaop = Number(Math.floor(h / 51))
                 const nop = Number(Math.ceil(rootStore.visitsStore.visits.length / noeaop))
+                setElementHeight(h)
                 setNumberOfElementsAtOnePage(noeaop)
                 setNumberOfPages(nop)
             });
@@ -50,7 +52,7 @@ const CustomerPanel = () => {
                                 <p>Ładowanie...</p>
                             ) : (
                                 <>
-                                    <ul>
+                                    <ul style={{ height: elementHeight }}>
                                     {appointmentsList.map((item, index) => {
                                         if ((numberOfElementsAtOnePage * (actualPage + 1) - numberOfElementsAtOnePage - 1 ) < index && 
                                         index < (numberOfElementsAtOnePage * (actualPage + 1 ))) {
