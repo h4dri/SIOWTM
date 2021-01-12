@@ -1,6 +1,6 @@
 import { action, observable } from "mobx";
 import agent from "../api/agent";
-import { IVisit } from "../models/VisitModel";
+import { IVisit, NewVisit } from "../models/VisitModel";
 import { RooteStore } from "./RootStore";
 
 export default class VisitsStore {
@@ -29,6 +29,14 @@ export default class VisitsStore {
     @action deleteVisit = async (id: string) => {
         try{
             await agent.Visits.delete(id);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    @action createVisit = async (value: NewVisit) => {
+        try{
+            await agent.Visits.create(value);
         } catch (error) {
             console.log(error)
         }

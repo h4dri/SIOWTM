@@ -44,7 +44,7 @@ const CustomerPanel = () => {
                         <div className="blockTopic"><h2>Subskrypcja</h2></div>
                     </div>
                     <div className="customerPanelBlock right top">
-                        <div className="blockTopic"><h2>Stwórz wizytę</h2></div>
+                        <div className="blockTopic"><h2>Umów wizytę</h2></div>
                         <CreateVisitComponent />
                     </div>
                     <div id="appointmentsList" className="customerPanelBlock left bottom">

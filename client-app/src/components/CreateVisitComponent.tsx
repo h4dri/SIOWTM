@@ -1,23 +1,36 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { NewVisit } from '../models/VisitModel';
 import { RootStoreContext } from '../stores/RootStore';
 import '../styles/CreateVisitStyle.css';
 
 const CreateVisitComponent = () => {
     const rootStore = useContext(RootStoreContext)
     
+    
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var HH = String(today.getHours()).padStart(2, '0');
+    var MM = String(today.getMinutes()).padStart(2, '0');
+    var todayString = yyyy + "-" + mm + "-" + dd + "T" + HH + ":" + MM
+
     const [title, setTitle] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(todayString);
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [doctorDisplayName, setDoctorDisplayName] = useState('');
+    const [doctor, setDoctor] = useState('');
     const [buttonStatus, setButtonStatus] = useState(true);
     const [catList, setCatList] = useState<Array<String>>([])
+    const [docList, setDocList] = useState<Array<String>>([])
 
-    // const visitModelElement: IVisit = {
-    //     title: title,
-    //     description: description,
-    //     category: category
-    // };
+    const visitToCreate: NewVisit = {
+        title: title,
+        description: description,
+        category: category,
+        date: new Date(date),
+        docName: doctor
+    };
 
     useEffect(() => {
         rootStore.categoriesStore.loadCategories()
@@ -25,6 +38,13 @@ const CreateVisitComponent = () => {
                 setCatList(rootStore.categoriesStore.categories)
             });
     }, [rootStore.categoriesStore]);
+
+    useEffect(() => {
+        rootStore.doctorsStore.loadDoctors()
+            .then(() => {
+                setDocList(rootStore.doctorsStore.doctors)
+            });
+    }, [rootStore.doctorsStore]);
 
     function handleChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value);
@@ -42,21 +62,20 @@ const CreateVisitComponent = () => {
         const e = document.getElementById("categories") as HTMLSelectElement
         var CurValue = e.options[e.selectedIndex].value;
         setCategory(CurValue)
-        checkButtonStatus()
     }
 
-    function handleChangeDoctorDisplayName(event: React.ChangeEvent<HTMLInputElement>) {
-        setDoctorDisplayName(event.target.value);
+    function handleChangeDoctors() {
+        const e = document.getElementById("doctors") as HTMLSelectElement
+        var CurValue = e.options[e.selectedIndex].value;
+        setDoctor(CurValue)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        alert(
-            'title: ' + title + '\n' +
-            'date: ' + date + '\n' +
-            'description: ' + description + '\n' +
-            'category: ' + category + '\n' +
-            'doctorDisplayName: ' + doctorDisplayName
-        );
+        rootStore.visitsStore.createVisit(visitToCreate)
+            .then(() => {
+                console.log("UDAŁO SIĘ!")
+                window.open("/customerPanel", "_self")
+            });
         event.preventDefault();
     }
 
@@ -66,26 +85,26 @@ const CreateVisitComponent = () => {
             date !== '' &&
             description !== '' &&
             category !== '' &&
-            doctorDisplayName !== ''
+            doctor !== ''
         ) setButtonStatus(false);
         else setButtonStatus(true);
     }
 
-    function validate(event: React.KeyboardEvent<HTMLDivElement>){
+    function validate(event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement, MouseEvent>){
         checkButtonStatus();
     }
 
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <div id="createVisitArea" onKeyUp={validate}>
+                <div id="createVisitArea" onKeyUp={validate} onClick={validate}>
                     <div className="createVisitElement">
                         <p>Tytuł:</p>
                         <input type="text" value={title} onChange={handleChangeTitle} />
                     </div>
                     <div className="createVisitElement">
                         <p>Termin wizyty:</p>
-                        <input type="text" value={date} onChange={handleChangeDate} />
+                        <input type="datetime-local" value={date} min={todayString} onChange={handleChangeDate} />
                     </div>
                     <div className="createVisitElement">
                         <p>Kategoria:</p>
@@ -98,7 +117,12 @@ const CreateVisitComponent = () => {
                     </div>
                     <div className="createVisitElement">
                         <p>Lekarz:</p>
-                        <input type="text" value={doctorDisplayName} onChange={handleChangeDoctorDisplayName} />
+                        <select id="doctors" onChange={handleChangeDoctors}>
+                            <option value=""></option>
+                            {docList.map((item, key) => {
+                                return <option key={key} value={item.toString()}>{item.toString()}</option>
+                            })}
+                        </select>
                     </div>
                     <div className="createVisitElement">
                         <p>Opis:</p>
