@@ -11,6 +11,7 @@ export default class VisitsStore {
     }
     
     @observable visits: IVisit[] = [];
+    @observable endedVisits: IVisit[] = [];
     @observable isLoading = false;
     @observable closeVisit: IVisit | undefined;
 
@@ -18,8 +19,10 @@ export default class VisitsStore {
         this.isLoading = true;
         try{
             const visits = await agent.Visits.list()
-            visits.forEach(visit =>{
-                this.visits.push(visit)
+            visits.forEach(visit => {
+                visit.isEnded ? this.endedVisits.push(visit) : this.visits.push(visit)
+            })
+            this.visits.forEach(visit => {
                 if(this.closeVisit === undefined) this.closeVisit = visit
                 else if(this.closeVisit.date > visit.date) this.closeVisit = visit
             })
@@ -49,6 +52,7 @@ export default class VisitsStore {
     @action updateVisit = async (value: UpdateVisitModel) => {
         try{
             await agent.Visits.update(value)
+            this.rootStore.userStore.user!.isDoctor === true ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
         } catch (error) {
             console.log(error)
         }

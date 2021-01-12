@@ -4,6 +4,7 @@ export interface IVisit{
     description: string;
     category: string;
     date: Date;
+    isEnded: boolean;
     attendees: OneAttendee[];
 }
 
@@ -28,4 +29,5 @@ export interface UpdateVisitModel{
     category: string;
     date: Date;
     docName: string;
+    isEnded?: boolean;
 }

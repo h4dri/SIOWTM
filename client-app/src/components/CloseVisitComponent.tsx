@@ -24,21 +24,32 @@ function CloseVisitComponent(props: {visit: IVisit | undefined}) {
 
     return (
         <div id="closeVisitContent">
-            <div className="closeVisitElement"><p>Tytuł:</p>
-                <div className="elementText">{props.visit?.title}</div>
-            </div>
-            <div className="closeVisitElement"><p>Szczegóły:</p>
-                <div className="elementText">{props.visit?.description}</div>
-            </div>
-            <div className="closeVisitElement"><p>Data:</p>
-                <div className="elementText">{Moment(props.visit?.date).format('DD (dddd) MMMM yyyy HH:mm')}</div>
-            </div>
-            <div className="closeVisitElement"><p>Kategoria:</p>
-                <div className="elementText">{props.visit?.category}</div>
-            </div>
-            <div className="closeVisitElement"><p>Pacjent:</p>
-                <div className="elementText"><i>{clientName}</i></div>
-            </div>
+            {
+                props.visit === undefined ? (
+                    <div id="noVisits">
+                        <p>Brak wizyt = Brak najbliższej wizyty</p>
+                    </div>
+                    
+                ) : (
+                    <>
+                        <div className="closeVisitElement"><p>Tytuł:</p>
+                            <div className="elementText">{props.visit?.title}</div>
+                        </div>
+                        <div className="closeVisitElement"><p>Szczegóły:</p>
+                            <div className="elementText">{props.visit?.description}</div>
+                        </div>
+                        <div className="closeVisitElement"><p>Data:</p>
+                            <div className="elementText">{Moment(props.visit?.date).format('DD (dddd) MMMM yyyy HH:mm')}</div>
+                        </div>
+                        <div className="closeVisitElement"><p>Kategoria:</p>
+                            <div className="elementText">{props.visit?.category}</div>
+                        </div>
+                        <div className="closeVisitElement"><p>Pacjent:</p>
+                            <div className="elementText"><i>{clientName}</i></div>
+                        </div>
+                    </>
+                )
+            }
         </div>
     );
 }

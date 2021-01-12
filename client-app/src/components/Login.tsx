@@ -59,7 +59,7 @@ function Login() {
                 <div id="loginForm">
                     <form onSubmit={handleSubmit}>
                         <label>
-                            <p>Login:</p>
+                            <p>Email:</p>
                             <div id="loginInput">
                                 <input type="email" value={login} onChange={handleChangeLogin} />
                             </div>

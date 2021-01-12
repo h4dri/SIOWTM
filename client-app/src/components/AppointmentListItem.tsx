@@ -74,7 +74,6 @@ function AppointmentListItem(props: { item: IVisit, isDoctor: boolean}) {
                 date: new Date(date),
                 docName: doctorName
             };
-            console.log(visitToUpdate)
             rootStore.visitsStore.updateVisit(visitToUpdate)
                 .then(() => {
                     toast.success('Pomyślnie zakutalizowano!');
@@ -97,13 +96,29 @@ function AppointmentListItem(props: { item: IVisit, isDoctor: boolean}) {
             })
     }
 
+    function handleEndButton(){
+        const visitToUpdate: UpdateVisitModel = {
+            id: props.item.id,
+            title: title,
+            description: description,
+            category: category,
+            date: new Date(date),
+            docName: doctorName,
+            isEnded: true
+        };
+        rootStore.visitsStore.updateVisit(visitToUpdate)
+            .then(() => {
+                toast.success('Pomyślnie zakończono wizytę!');
+            });
+    }
+
     Moment.locale('pl')
 
     return (
            <div id="appointmentsItemContainer">
                <div id="mainContent" onClick={handleShowHideButton}>
                     <div id="title">{props.item.title}</div>
-                    <div id="startDateShort">{Moment(props.item.date).format('DD MMMM HH:mm')}</div>
+                    <div id="startDateShort">{Moment(props.item.date).format('DD MMMM yyyy HH:mm')}</div>
                     <div id="showHideButton">{isShow ? "-" : "+"}</div>
                </div>
                <div id="showableContent" style={{ display: isShow ? "block" : "none"}}>
@@ -132,15 +147,21 @@ function AppointmentListItem(props: { item: IVisit, isDoctor: boolean}) {
                             :
                             <div className="showableContentArea">Doktor:<br />&emsp;<i>{doctorName}</i></div>
                     }
-                    <div id="buttons">
-                        <input type="submit" id="editButton" value={editButtonText} onClick={handleEditButton}/>
-                        {
-                            !props.isDoctor ?
-                                <input type="submit" value="Usuń wizytę" onClick={handleDeleteButton}/>
-                                :
-                                null
-                        }
-                    </div>
+                    {
+                        props.item.isEnded ? (
+                            <div id="buttons"><p>Wizyta zakończona.</p></div>
+                        ) : (
+                            <div id="buttons">
+                                <input type="submit" id="editButton" value={editButtonText} onClick={handleEditButton}/>
+                                {
+                                    !props.isDoctor ?
+                                        <input type="submit" value="Usuń wizytę" onClick={handleDeleteButton}/>
+                                        :
+                                        <input type="submit" value="Zakończ wizytę" onClick={handleEndButton}/>
+                                }
+                            </div>
+                        )
+                    }
                </div>
            </div>
     );
