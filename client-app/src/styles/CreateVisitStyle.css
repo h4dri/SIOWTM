@@ -38,6 +38,10 @@
     outline:none;
 }
 
+#createVisitArea .createVisitElement select:focus{
+    outline:none;
+}
+
 #createVisitArea #createVisitButton{
     display: block;
     width: calc(95% - 1px);

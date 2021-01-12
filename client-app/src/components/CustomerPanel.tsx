@@ -6,6 +6,8 @@ import AppointmentListItem from './AppointmentListItem';
 import { IVisit } from '../models/VisitModel';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../stores/RootStore';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CustomerPanel = () => {
     const rootStore = useContext(RootStoreContext)
@@ -37,6 +39,7 @@ const CustomerPanel = () => {
     return (
         <>
             <div id="customerPanel">
+                <ToastContainer />
                 <HeaderCP firstName={firstName} lastName={lastName} isDoctor={false} />
 
                 <div id="customerPanelContent">
@@ -74,11 +77,6 @@ const CustomerPanel = () => {
                     <div className="customerPanelBlock right bottom">
                         <div className="blockTopic"><h2>Historia leczenia</h2></div>
                     </div>
-                </div>
-                <div id="circle">
-                    <div id="lineOne"></div>
-                    <div id="lineTwo"></div>
-                    <div id="square"></div>
                 </div>
             </div>
         </>

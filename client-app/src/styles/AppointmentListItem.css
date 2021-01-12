@@ -45,16 +45,45 @@
 
 #appointmentsItemContainer #showableContent{
     width: 500px;
-    min-height: 300px;
+    min-height: 400px;
     margin: 0;
     padding: 0;
     overflow: hidden;
     position: absolute;
-    top: calc(50% - 150px);
+    top: calc(50% - 200px);
     left: calc(50% - 250px);
     background: #323232;
-    box-shadow: 0px 0px 20px #565656;
-    z-index: 60;
+    box-shadow: 0px 0px 0px 100000px #ffffff80;
+    z-index: 100;
+}
+
+#appointmentsItemContainer #showableContent #closeButton{
+    display: block;
+    overflow: hidden;
+    margin: 5px;
+    padding: 0;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#appointmentsItemContainer #showableContent #closeButton input{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    font-size: 20px;
+    background-color: #0000004f;
+    color: #ededed;
+    border: 1px solid #cccccc4f;
+    padding: 0;
+    line-height: 24px;
+}
+
+#appointmentsItemContainer #showableContent #closeButton input:focus{
+    outline: none;
 }
 
 #appointmentsItemContainer #showableContent .showableContentArea{
@@ -66,15 +95,81 @@
 }
 
 #appointmentsItemContainer #showableContent .showableContentArea p{
-    margin: 0;
+    text-align: left;
+    margin: 5px 0;
     padding: 0;
+    font-size: 16px;
 }
 
-#appointmentsItemContainer #showableContent .showableContentArea #descriptionContent{
-    width: calc(95% - 1px);
-    margin: 5px 0 10px 2.5%;
-    padding: 0 0 0 2.5%;
-    border-left: 1px solid #ededed;
+#appointmentsItemContainer #showableContent .showableContentArea input, select{
+    width: 95%;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+    box-sizing:content-box;
+}
+
+#appointmentsItemContainer #showableContent .showableContentArea input:focus{
+    outline:none;
+}
+
+#appointmentsItemContainer #showableContent .showableContentArea select:focus{
+    outline:none;
+}
+
+#appointmentsItemContainer #showableContent .showableContentArea input:disabled{
+    opacity: 0.5;
+}
+
+#appointmentsItemContainer #showableContent .showableContentArea select:disabled{
+    opacity: 0.5;
+}
+
+#appointmentsItemContainer #showableContent #buttons{
+    display: block;
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 0 2.5%;
+    text-align: center;
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#appointmentsItemContainer #showableContent #buttons input{
+    width: 120px;
+    margin: 10px 5px;
+    display: block;
+    float: left;
+    box-sizing:content-box;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#appointmentsItemContainer #showableContent #buttons input:last-child{
+    border-color: #961e1e;
+    background-color: #da2828;
+    color: #ededed;
+}
+
+#appointmentsItemContainer #showableContent #buttons input:focus{
+    outline: none;
+}
+
+#appointmentsItemContainer #showableContent #buttons input:disabled{
+    opacity: 0.5;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -88,6 +183,20 @@
         top: calc(50% - 150px);
         left: calc(50% - 250px);
         background: #323232;
+        z-index: 60;
+    }
+
+    #appointmentsItemContainer #showableContent{
+        width: 500px;
+        min-height: 400px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 20px;
+        left: calc(50% - 250px);
+        background: #323232;
+        box-shadow: 0px 0px 20px #565656;
         z-index: 60;
     }
 }

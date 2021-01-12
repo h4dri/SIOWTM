@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { IUser, IUserFromValues } from '../models/UserModel';
-import { IVisit, NewVisit } from '../models/VisitModel';
+import { IVisit, NewVisit, UpdateVisitModel } from '../models/VisitModel';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -41,7 +41,7 @@ const Visits = {
     list: (): Promise<IVisit[]> => requests.get('/visits'),
     details: (id: string) => requests.get(`/visits/${id}`),
     create: (visit: NewVisit) => requests.post('/visits', visit),
-    update: (visit: IVisit) => requests.put(`/visits/${visit.id}`, visit),
+    update: (visit: UpdateVisitModel) => requests.put(`/visits/${visit.id}`, visit),
     delete: (id: string) => requests.del(`/visits/${id}`)
 }
 

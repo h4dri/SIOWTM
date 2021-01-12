@@ -1,4 +1,5 @@
 import { action, computed, observable, runInAction } from 'mobx';
+import { toast } from 'react-toastify';
 import agent from '../api/agent';
 import { IUser, IUserFromValues } from '../models/UserModel';
 import { RooteStore } from './RootStore';
@@ -38,6 +39,19 @@ export default class UserStore{
             runInAction(() =>{
                 this.user = user;
             })
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
+
+    @action registerUser = async (value: IUserFromValues) => {
+        try{
+            await agent.User.register(value)
+                .then(async () =>{
+                    await this.login(value)
+                })
+            
         } catch (error) {
             console.log(error)
             throw error;

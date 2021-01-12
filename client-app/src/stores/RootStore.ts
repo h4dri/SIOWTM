@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { configure } from 'mobx';
+import { action, configure } from 'mobx';
 import UserStore from "./UserStore";
 import CommonStore from "./CommonStore";
 import VisitsStore from "./VisitsStore";
@@ -14,6 +14,10 @@ export class RooteStore {
     commonStore: CommonStore;
     categoriesStore: CategoriesStore;
     doctorsStore: DoctorsStore;
+
+    @action delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+    }
     
     constructor(){
         this.userStore = new UserStore(this);

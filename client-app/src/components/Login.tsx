@@ -12,7 +12,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errorText, setErrorText] = useState('');
     const [buttonStatus, setButtonStatus] = useState(true);
-    const [isdoctor, setIsDoctor] = useState(false);
 
     const values: IUserFromValues = {
         email: login,
@@ -62,7 +61,7 @@ function Login() {
                         <label>
                             <p>Login:</p>
                             <div id="loginInput">
-                                <input type="text" value={login} onChange={handleChangeLogin} />
+                                <input type="email" value={login} onChange={handleChangeLogin} />
                             </div>
                             <p>Hasło:</p>
                             <div id="loginInput">

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { toast } from 'react-toastify';
 import { NewVisit } from '../models/VisitModel';
 import { RootStoreContext } from '../stores/RootStore';
 import '../styles/CreateVisitStyle.css';
 
 const CreateVisitComponent = () => {
     const rootStore = useContext(RootStoreContext)
-    
     
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -70,10 +70,15 @@ const CreateVisitComponent = () => {
         setDoctor(CurValue)
     }
 
+    function delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         rootStore.visitsStore.createVisit(visitToCreate)
-            .then(() => {
-                console.log("UDAŁO SIĘ!")
+            .then(async () => {
+                toast.success('Pomyślnie utworzono nową wizytę!', {autoClose: 3000})
+                await delay(3000);
                 window.open("/customerPanel", "_self")
             });
         event.preventDefault();

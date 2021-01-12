@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/Register.css';
 import userSvg from '../resources/user.svg';
 import Header from './Header';
+import { RootStoreContext } from '../stores/RootStore';
+import { IUserFromValues } from '../models/UserModel';
 
 function Register(){
+    const rootStore = useContext(RootStoreContext);
+    
     const [login, setLogin] = useState('');
     const [email, setEmail] = useState('');
     const [emailCorrect, setEmailCorrect] = useState(false);
@@ -12,19 +16,10 @@ function Register(){
     const [checkPassword, setCheckPassword] = useState('');
     const [passwordCorrect, setPasswordCorrect] = useState(false);
     const [passwordText, setPasswordText] = useState('Wprowadź hasło i jego potwierdzenie.');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [phoneNumberText, setPhoneNumberText] = useState('Wprowadź poprawny numer telefonu.');
-    const [phoneNumberCorrect, setPhoneNumberCorrect] = useState(false);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [pesel, setPesel] = useState('');
-    const [peselText, setPeselText] = useState('Wprowadź poprawny pesel.');
-    const [peselCorrect, setPeselCorrect] = useState(false);
+    const [displayName, setdisplayName] = useState('');
     const [buttonStatus, setButtonStatus] = useState(true);
     const [validationPasswordColor, setValidationPasswordColor] = useState('#ff0000');
-    const [validationPeselColor, setValidationPeselColor] = useState('#ff0000'); 
     const [validationEmailColor, setValidationEmailColor] = useState('#ff0000');
-    const [validationPhoneNumberColor, setValidationPhoneNumberColor] = useState('#ff0000');
 
     function handleChangeLogin(event: React.ChangeEvent<HTMLInputElement>) {
         setLogin(event.target.value);
@@ -42,33 +37,19 @@ function Register(){
         setCheckPassword(event.target.value);
     }
 
-    function handleChangeCheckPhoneNumber(event: React.ChangeEvent<HTMLInputElement>) {
-        setPhoneNumber(event.target.value);
-    }
-
-    function handleChangeFirstName(event: React.ChangeEvent<HTMLInputElement>) {
-        setFirstName(event.target.value);
-    }
-
-    function handleChangeLastName(event: React.ChangeEvent<HTMLInputElement>) {
-        setLastName(event.target.value);
-    }
-
-    function handleChangePesel(event: React.ChangeEvent<HTMLInputElement>) {
-        setPesel(event.target.value);
+    function handleChangeDisplayName(event: React.ChangeEvent<HTMLInputElement>) {
+        setdisplayName(event.target.value);
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        alert(
-            'Login: ' + login + '\n' +
-            'Email: ' + email + '\n' +
-            'Password: ' + password + '\n' +
-            'CheckPassword: ' + checkPassword + '\n' +
-            'PhoneNumber: ' + phoneNumber + '\n' +
-            'Name: ' + firstName + '\n' +
-            'LastName: ' + lastName + '\n' +
-            'Pesel: ' + pesel
-        );
+        const userDataToRegister: IUserFromValues = {
+            email: email,
+            username: login,
+            displayName: displayName,
+            password: password,
+            isDoctor: false
+        };
+        rootStore.userStore.registerUser(userDataToRegister)
         event.preventDefault();
     }
 
@@ -102,71 +83,6 @@ function Register(){
         }
     }
 
-    function checkPhoneNumberCorrect() {
-        if (phoneNumber.length === 0) {
-            setPhoneNumberText('Wprowadź poprawny numer telefonu.');
-            setValidationPhoneNumberColor("#ff0000");
-            setPhoneNumberCorrect(false);
-        } 
-        else if (phoneNumber.length !== 9) {
-            setPhoneNumberText('Za mało znaków.');
-            setValidationPhoneNumberColor("#ff0000");
-            setPhoneNumberCorrect(false);
-        }
-        else {
-            const expression = /^[0-9]{9}$/;
-            if (expression.test(phoneNumber)) {
-                setPhoneNumberText('Poprawnie wprowadzono numer telefonu.');
-                setValidationPhoneNumberColor("#00ff00");
-                setPhoneNumberCorrect(true);
-            }
-            else{
-                setPhoneNumberText('Wprowadzono błędny numer telefonu.');
-                setValidationPhoneNumberColor("#ff0000");
-                setPhoneNumberCorrect(false);                
-            }
-        }
-    }
-
-    function checkPeselCorrect() {
-        if (pesel.length === 0) {
-            setPeselText('Wprowadź poprawny pesel.');
-            setValidationPeselColor("#ff0000");
-            setPeselCorrect(false);
-        }
-        else if (pesel.length !== 11) {
-            setPeselText('Za mało znaków.');
-            setValidationPeselColor("#ff0000");
-            setPeselCorrect(false);
-        }
-        else {
-            const peselArray = pesel.split('');
-            const peselSum =
-                parseInt(peselArray[0]) * 1 +
-                parseInt(peselArray[1]) * 3 +
-                parseInt(peselArray[2]) * 7 +
-                parseInt(peselArray[3]) * 9 +
-                parseInt(peselArray[4]) * 1 +
-                parseInt(peselArray[5]) * 3 +
-                parseInt(peselArray[6]) * 7 +
-                parseInt(peselArray[7]) * 9 +
-                parseInt(peselArray[8]) * 1 +
-                parseInt(peselArray[9]) * 3 +
-                parseInt(peselArray[10]) * 1;
-
-            if (peselSum % 10 === 0) {
-                setPeselText('Poprawnie wprowadzono pesel.');
-                setValidationPeselColor("#00ff00");
-                setPeselCorrect(true);
-            }
-            else {
-                setPeselText('Wprowadzono błędny pesel.');
-                setValidationPeselColor("#ff0000");
-                setPeselCorrect(false);
-            }
-        }
-    }
-
     function checkEmailCorrect() {
         const expression = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         if (email === ''){
@@ -194,20 +110,13 @@ function Register(){
             password !== '' &&
             checkPassword !== '' &&
             passwordCorrect === true &&
-            phoneNumber !== '' &&
-            phoneNumberCorrect === true &&
-            firstName !== '' &&
-            lastName !== '' &&
-            pesel !== '' &&
-            peselCorrect === true
+            displayName !== ''
         ) setButtonStatus(false);
         else setButtonStatus(true);
     }
 
-    function validate(event: React.KeyboardEvent<HTMLDivElement>){
+    function validate(event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement, MouseEvent>){
         checkPasswordCorrect();
-        checkPhoneNumberCorrect();
-        checkPeselCorrect();
         checkEmailCorrect();
         checkButtonStatus();
     }
@@ -215,7 +124,7 @@ function Register(){
     return (
         <>
             <Header />
-            <div id="register" onKeyUp={validate}>
+            <div id="register" onKeyUp={validate} onClick={validate}>
                 <div id="registerImg">
                     <img src={userSvg} alt="User SVG" />
                 </div>
@@ -238,26 +147,12 @@ function Register(){
                                     <i style={{ color: validationPasswordColor }}>{passwordText}</i>
                                 </div>
                                 <div id="registerInput">
-                                    <p>Numer telefonu:</p>
-                                    <input type="text" value={phoneNumber} onChange={handleChangeCheckPhoneNumber} maxLength={9} />
-                                    <i style={{ color: validationPhoneNumberColor }}>{phoneNumberText}</i>
-                                </div>
-                                <div id="registerInput">
                                     <p>Potwierdź hasło:</p>
                                     <input type="password" value={checkPassword} onChange={handleChangeCheckPassword} />
                                 </div>
                                 <div id="registerInput">
-                                    <p>Pesel:</p>
-                                    <input type="text" value={pesel} onChange={handleChangePesel} maxLength={11} />
-                                    <i style={{ color: validationPeselColor }}>{peselText}</i>
-                                </div>
-                                <div id="registerInput">
-                                    <p>Imię:</p>
-                                    <input type="text" value={firstName} onChange={handleChangeFirstName} />
-                                </div>
-                                <div id="registerInput">
-                                    <p>Nazwisko:</p>
-                                    <input type="text" value={lastName} onChange={handleChangeLastName} />
+                                    <p>Imię i nazwisko:</p>
+                                    <input type="text" value={displayName} onChange={handleChangeDisplayName} />
                                 </div>
                             </label>
                         </div>
