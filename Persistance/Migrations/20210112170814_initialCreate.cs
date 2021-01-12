@@ -70,7 +70,8 @@ namespace Persistance.Migrations
                     Description = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    DocName = table.Column<string>(nullable: true)
+                    DocName = table.Column<string>(nullable: true),
+                    isEnded = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

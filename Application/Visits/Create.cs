@@ -23,6 +23,7 @@ namespace Application.Visits
             public string Category { get; set; }
             public DateTime Date { get; set; } 
             public string DocName { get; set; } 
+            public bool isEnded { get; set; } 
         }
  
         public class CommandValidator : AbstractValidator<Command>
@@ -56,7 +57,8 @@ namespace Application.Visits
                     Description = request.Description,
                     Category = request.Category,
                     Date = request.Date,
-                    DocName = request.DocName
+                    DocName = request.DocName,
+                    isEnded = request.isEnded,
                 };
 
                 _context.Visits.Add(visit);

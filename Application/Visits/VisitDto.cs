@@ -14,6 +14,7 @@ namespace Application.Visits
         public string Category {get;set;}
         public DateTime Date {get;set;} 
         public string DocName {get;set;} 
+        public bool isEnded {get;set;} 
         [JsonPropertyName("attendees")]
         public ICollection<AttendeeDto> UserVisits {get; set;}
     }

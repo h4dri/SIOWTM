@@ -76,6 +76,7 @@ namespace Persistence
                         Description = "Visit 2 months in future",
                         Category = "kardiologia",
                         DocName = "doctor1",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -99,6 +100,7 @@ namespace Persistence
                         Description = "Visit 1 months in future",
                         Category = "kardiologia",
                         DocName = "doctor1",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -122,6 +124,7 @@ namespace Persistence
                         Description = "Visit 1 month in future",
                         Category = "kardiologia",
                         DocName = "doctor1",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -145,6 +148,7 @@ namespace Persistence
                         Description = "Visit 1 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -168,6 +172,7 @@ namespace Persistence
                         Description = "Visit 2 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -191,6 +196,7 @@ namespace Persistence
                         Description = "Visit 2 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -214,6 +220,7 @@ namespace Persistence
                         Description = "Visit 4 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -237,6 +244,7 @@ namespace Persistence
                         Description = "Visit 3 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -260,6 +268,7 @@ namespace Persistence
                         Description = "Visit 5 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
@@ -283,6 +292,7 @@ namespace Persistence
                         Description = "Visit 8 months in future",
                         Category = "stomatologia",
                         DocName = "doctor2",
+                        isEnded = false,
                         UserVisits = new List<UserVisit>
                         {
                             new UserVisit
