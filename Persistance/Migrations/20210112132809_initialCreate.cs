@@ -41,8 +41,7 @@ namespace Persistance.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     DisplayName = table.Column<string>(nullable: true),
-                    IsDoctor = table.Column<bool>(nullable: false),
-                    DocName = table.Column<string>(nullable: true)
+                    IsDoctor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
