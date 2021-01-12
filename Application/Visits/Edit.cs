@@ -18,7 +18,8 @@ namespace Application.Visits
                     public string Description {get;set;}
                     public string Category {get;set;}
                     public DateTime? Date {get;set;}  
-                    public String DocName {get;set;}  
+                    public string DocName {get;set;}  
+                    public bool isEnded {get;set;}  
                     
                 }
 
@@ -55,6 +56,7 @@ namespace Application.Visits
                         visit.Category = request.Category ?? visit.Category;
                         visit.Date = request.Date ?? visit.Date;
                         visit.DocName = request.DocName ?? visit.DocName;
+                        visit.isEnded = request.isEnded;
 
                         var success = await _context.SaveChangesAsync() > 0;
         
