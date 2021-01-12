@@ -1,0 +1,28 @@
+#closeVisitContent{
+    width: 95%;
+    padding: 1% 2.5%;
+    margin: 0;
+    overflow: hidden;
+    text-align: left;
+}
+
+#closeVisitContent .closeVisitElement{
+    width: 45%;
+    margin: 0;
+    padding: 1% 2.5%;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+
+#closeVisitContent .closeVisitElement p{
+    margin: 0;
+    padding: 0;
+}
+
+#closeVisitContent .closeVisitElement .elementText{
+    width: calc(95% - 1px); 
+    padding-left: 2.5%;
+    margin: 10px 0 10px 2.5%;
+    border-left: 1px solid #ededed;
+}

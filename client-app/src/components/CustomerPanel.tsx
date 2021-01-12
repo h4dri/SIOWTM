@@ -56,12 +56,17 @@ const CustomerPanel = () => {
                             {isLoading ? (
                                 <p>Ładowanie...</p>
                             ) : (
+                                appointmentsList.length === 0 ? (
+                                    <div id="noVisits">
+                                        <p>Brak wizyt</p>
+                                    </div>
+                                ) : (
                                 <>
                                     <ul style={{ height: elementHeight }}>
                                     {appointmentsList.map((item, index) => {
                                         if ((numberOfElementsAtOnePage * (actualPage + 1) - numberOfElementsAtOnePage - 1 ) < index && 
                                         index < (numberOfElementsAtOnePage * (actualPage + 1 ))) {
-                                            return <li key={item.id}><AppointmentListItem item={item} /></li>
+                                            return <li key={item.id}><AppointmentListItem item={item} isDoctor={false}/></li>
                                         } else return null
                                     })}
                                     </ul>
@@ -71,6 +76,7 @@ const CustomerPanel = () => {
                                         <div className="pgElement" onClick={() => actualPage === (numberOfPages - 1) ? console.log("+") : setActualPage(actualPage + 1)}>+</div>
                                     </div>
                                 </>
+                                )
                             )}
                         </div>
                     </div>

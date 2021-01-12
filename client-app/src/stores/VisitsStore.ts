@@ -1,3 +1,4 @@
+import { throws } from "assert";
 import { action, observable } from "mobx";
 import agent from "../api/agent";
 import { IVisit, NewVisit, UpdateVisitModel } from "../models/VisitModel";
@@ -11,6 +12,7 @@ export default class VisitsStore {
     
     @observable visits: IVisit[] = [];
     @observable isLoading = false;
+    @observable closeVisit: IVisit | undefined;
 
     @action loadVisits = async () => {
         this.isLoading = true;
@@ -18,6 +20,8 @@ export default class VisitsStore {
             const visits = await agent.Visits.list()
             visits.forEach(visit =>{
                 this.visits.push(visit)
+                if(this.closeVisit === undefined) this.closeVisit = visit
+                else if(this.closeVisit.date > visit.date) this.closeVisit = visit
             })
             this.isLoading = false;
         } catch (error) {

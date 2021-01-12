@@ -79,6 +79,16 @@
     overflow: hidden;
 }
 
+#customerPanel .customerPanelBlock #listContainer #noVisits{
+    width: 100%;
+    padding: 1% 2.5%;
+    margin: 0;
+}
+
+#customerPanel .customerPanelBlock #listContainer #noVisits p{
+    font-size: 20px;
+}
+
 #customerPanel .customerPanelBlock #listContainer ul{
     list-style: none;
     margin: 0;

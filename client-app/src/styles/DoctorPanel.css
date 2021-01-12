@@ -15,6 +15,65 @@
     overflow: hidden;
 }
 
+#doctorPanel #doctorPanelContent #loadingText{
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+#doctorPanel #doctorPanelContent #loadingText p{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#doctorPanel #doctorPanelContent #listContainer{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#doctorPanel #doctorPanelContent #listContainer #noVisits{
+    width: 100%;
+    padding: 1% 2.5%;
+    margin: 0;
+}
+
+#doctorPanel #doctorPanelContent #listContainer #noVisits p{
+    font-size: 20px;
+}
+
+#doctorPanel #doctorPanelContent #listContainer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#doctorPanel #doctorPanelContent #listContainer ul li{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#doctorPanel #doctorPanelContent #listContainer #pageCounter{
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#doctorPanel #doctorPanelContent #listContainer #pageCounter .pgElement{
+    width: 33%;
+    height: 30px;
+    float: left;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 #doctorPanel .doctorPanelBlock{
     width: 42.5%;
     height: calc(42.5vh - 25px);
@@ -63,61 +122,6 @@
     padding: 0;
 }
 
-#circle{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -75px;
-    margin-left: -100px;
-    width: 200px;
-    height: 200px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 20px #565656;
-}
-
-#circle #lineOne{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -35px;
-    margin-left: -10px;
-    content: ' ';
-    height: 120px;
-    width: 20px;
-    background-color: #FF5656;
-    box-shadow: 0px 0px 20px #565656;
-}
-
-#circle #lineTwo{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -35px;
-    margin-left: -10px;
-    content: ' ';
-    height: 120px;
-    width: 20px;
-    background-color: #FF5656;
-    box-shadow: 0px 0px 20px #565656;
-}
-
-#circle #lineTwo {
-    transform: rotate(90deg);
-}
-
-#circle #square{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -35px;
-    margin-left: -10px;
-    content: ' ';
-    height: 120px;
-    width: 20px;
-    background-color: #FF5656;
-}
-
 @media only screen and (max-width: 1000px) {
     #doctorPanel .doctorPanelBlock{
         width: 90%;
@@ -149,9 +153,5 @@
 
     #doctorPanel .doctorPanelBlock .blockTopic{
         display: block;
-    }
-
-    #circle{
-        display: none;
     }
   }

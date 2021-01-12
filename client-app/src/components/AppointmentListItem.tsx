@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../styles/AppointmentListItem.css';
 import { IVisit, UpdateVisitModel } from '../models/VisitModel';
 import Moment from 'moment';
-import 'moment/locale/pl'
+import 'moment/locale/pl';
 import { RootStoreContext } from '../stores/RootStore';
 import { toast } from 'react-toastify';
 
-function AppointmentListItem(props: { item: IVisit}) {
+function AppointmentListItem(props: { item: IVisit, isDoctor: boolean}) {
     const rootStore = useContext(RootStoreContext)
 
     var propsDate = Moment(props.item.date).format('yyyy-MM-DDTHH:mm');
@@ -17,13 +17,19 @@ function AppointmentListItem(props: { item: IVisit}) {
     const [date, setDate] = useState(propsDate);
     const [description, setDescription] = useState(props.item.description);
     const [category, setCategory] = useState(props.item.category);
+    const [clientName, setClientName] = useState('')
     const [doctorName, setDoctorName] = useState('')
     const [editButtonText, setEditButtonText] = useState("Edytuj wizytę");
     const [catList, setCatList] = useState<Array<String>>([]);
 
     useEffect(() => {
-        props.item.attendees[0].isDoctor ? 
-        setDoctorName(props.item.attendees[0].displayName) : setDoctorName(props.item.attendees[1].displayName);
+        if(props.item.attendees[0].isDoctor) {
+            setDoctorName(props.item.attendees[0].displayName);
+            setClientName(props.item.attendees[1].displayName);
+        } else {
+            setDoctorName(props.item.attendees[1].displayName);
+            setClientName(props.item.attendees[0].displayName);
+        }
     }, [])
 
     useEffect(() => {
@@ -120,10 +126,20 @@ function AppointmentListItem(props: { item: IVisit}) {
                             })}
                         </select>
                     </div>
-                    <div className="showableContentArea">Doktor:<br />&emsp;<i>{doctorName}</i></div>
+                    {
+                        props.isDoctor ?
+                            <div className="showableContentArea">Pacjent:<br />&emsp;<i>{clientName}</i></div>
+                            :
+                            <div className="showableContentArea">Doktor:<br />&emsp;<i>{doctorName}</i></div>
+                    }
                     <div id="buttons">
                         <input type="submit" id="editButton" value={editButtonText} onClick={handleEditButton}/>
-                        <input type="submit" value="Usuń wizytę" onClick={handleDeleteButton}/>
+                        {
+                            !props.isDoctor ?
+                                <input type="submit" value="Usuń wizytę" onClick={handleDeleteButton}/>
+                                :
+                                null
+                        }
                     </div>
                </div>
            </div>

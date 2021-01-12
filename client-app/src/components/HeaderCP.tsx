@@ -21,7 +21,7 @@ function HeaderCP(props: { firstName: React.ReactNode; lastName: React.ReactNode
         <div id="headerCP">
             <div id="headerCPText"><h1>SI OWTM</h1></div>
             <div id={props.isDoctor ? "headerCPImgDataAreaDoctor" : "headerCPImgDataArea"}>
-                <div id={props.isDoctor ? "headerCPDataDoctor" : "headerCPDataCustomer"}><i>{props.isDoctor ? "dr. " : "" }{displayName} {props.lastName}</i></div>
+                <div id={props.isDoctor ? "headerCPDataDoctor" : "headerCPDataCustomer"}><i>{props.isDoctor ? "dr " : "" }{displayName} {props.lastName}</i></div>
                 <div id="headerCPImg"><img src={userImg} alt="User Avatar" /></div>
                 <div id="headerCPLogout"><Link to="/logout" onClick={logout}>Wyloguj</Link></div>
             </div>

@@ -38,7 +38,7 @@ const requests = {
 }
 
 const Visits = {
-    list: (): Promise<IVisit[]> => requests.get('/visits'),
+    list: (): Promise<IVisit[]> => requests.get('/visits/myvisits'),
     details: (id: string) => requests.get(`/visits/${id}`),
     create: (visit: NewVisit) => requests.post('/visits', visit),
     update: (visit: UpdateVisitModel) => requests.put(`/visits/${visit.id}`, visit),
