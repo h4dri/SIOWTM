@@ -63,5 +63,10 @@ namespace API.Controllers
         {
             return await _mediator.Send(new Categories.Query());
         }
+        [HttpGet("myvisits")]
+        public async Task<ActionResult<List<VisitDto>>> MyVisits()
+        {
+            return await _mediator.Send(new MyVisits.Query());
+        }
     }
 }
