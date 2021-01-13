@@ -38,7 +38,7 @@ namespace Application.Visits
 
                         foreach (var comment in listOfComments)
                         {
-                            _context.Remove(comment);
+                            visit.Comments.Remove(comment);
                         }
                         _context.Remove(visit);
                         

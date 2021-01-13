@@ -56,7 +56,7 @@ namespace Application.Visits
                         var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
                         foreach (var comment in listOfComments)
                         {
-                            _context.Remove(comment);
+                            visit.Comments.Remove(comment);
                         }
                         
                         visit.Title = request.Title ?? visit.Title;
@@ -72,7 +72,7 @@ namespace Application.Visits
 
                         foreach (var comment in listOfComments)
                         {
-                            _context.Add(comment);
+                            visit.Comments.Add(comment);
                         }
         
                         if(success) return Unit.Value;
