@@ -37,8 +37,6 @@ namespace Application.User
                 RuleFor(x => x.Username).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty().EmailAddress();
                 RuleFor(x => x.Password).Password();
-                RuleFor(x => x.StartDate).NotEmpty(); 
-                RuleFor(x => x.EndDate).NotEmpty(); 
             }
         }
 
@@ -82,9 +80,9 @@ namespace Application.User
                         Token = _jwtGenerator.CreateToken(user),
                         UserName = user.UserName,
                         IsDoctor = user.IsDoctor,
-                        Subscribe = request.Subscribe,
-                        StartDate = request.StartDate,
-                        EndDate = request.EndDate,
+                        Subscribe = false,
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
                         Image = null
                     };
                 } 
