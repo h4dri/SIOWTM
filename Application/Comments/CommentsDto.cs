@@ -1,5 +1,4 @@
 using System;
-using Domain;
 
 namespace Application.Comments
 {
@@ -9,6 +8,6 @@ namespace Application.Comments
         public string Body { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Username { get; set; }
-        public string Displayname { get; set; }
+        public string DisplayName { get; set; }
     }
 }

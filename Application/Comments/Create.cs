@@ -8,6 +8,7 @@ using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
+using Persistence;
 
 namespace Application.Comments
 {
@@ -35,9 +36,7 @@ namespace Application.Comments
                 var visit = await _context.Visits.FindAsync(request.VisitId);
 
                 if (visit == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new {Visit = "not found"});
-                }
+                    throw new RestException(HttpStatusCode.NotFound, new {Activity = "Not found"});
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == request.Username);
 
