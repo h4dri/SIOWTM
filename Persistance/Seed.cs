@@ -23,7 +23,11 @@ namespace Persistence
                         DisplayName = "Bob",
                         UserName = "bob",
                         Email = "bob@test.com",
-                        IsDoctor = false
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+                        IsDoctor = false,
+                        Subscribe = false
+                        
                     },
                     new AppUser
                     {
@@ -31,7 +35,10 @@ namespace Persistence
                         DisplayName = "Jane",
                         UserName = "jane",
                         Email = "jane@test.com",
-                        IsDoctor = false
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+                        IsDoctor = false,
+                        Subscribe = false
                     },
                     new AppUser
                     {
@@ -39,7 +46,10 @@ namespace Persistence
                         DisplayName = "Tom",
                         UserName = "tom",
                         Email = "tom@test.com",
-                        IsDoctor = false
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+                        IsDoctor = false,
+                        Subscribe = false
                     },
                     new AppUser
                     {
@@ -47,7 +57,10 @@ namespace Persistence
                         DisplayName = "doctor1",
                         UserName = "doctor1",
                         Email = "doctor1@doctor.com",
-                        IsDoctor = true
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+                        IsDoctor = false,
+                        Subscribe = false
                     },
                     new AppUser
                     {
@@ -55,7 +68,10 @@ namespace Persistence
                         DisplayName = "doctor2",
                         UserName = "doctor2",
                         Email = "doctor2@doctor.com",
-                        IsDoctor = true
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+                        IsDoctor = false,
+                        Subscribe = false
                     }
                 };
 

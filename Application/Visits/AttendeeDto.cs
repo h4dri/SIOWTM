@@ -1,3 +1,5 @@
+using System;
+
 namespace Application.Visits
 {
     public class AttendeeDto

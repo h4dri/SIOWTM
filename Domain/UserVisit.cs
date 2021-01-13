@@ -10,7 +10,6 @@ namespace Domain
         public virtual Visit Visit { get; set; }
         public DateTime DateJoined { get; set; }
         public bool IsHost { get; set; }
-        public bool IsDoctor { get; set; }
 
     }
 }

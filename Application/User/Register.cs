@@ -24,6 +24,9 @@ namespace Application.User
             public string Email { get; set; }
             public string Password { get; set; }
             public bool IsDoctor { get; set; }
+            public bool Subscribe { get; set; }
+            public DateTime StartDate {get;set;}
+            public DateTime EndDate {get;set;}
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -34,6 +37,8 @@ namespace Application.User
                 RuleFor(x => x.Username).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty().EmailAddress();
                 RuleFor(x => x.Password).Password();
+                RuleFor(x => x.StartDate).NotEmpty(); 
+                RuleFor(x => x.EndDate).NotEmpty(); 
             }
         }
 
@@ -77,6 +82,9 @@ namespace Application.User
                         Token = _jwtGenerator.CreateToken(user),
                         UserName = user.UserName,
                         IsDoctor = user.IsDoctor,
+                        Subscribe = request.Subscribe,
+                        StartDate = request.StartDate,
+                        EndDate = request.EndDate,
                         Image = null
                     };
                 } 
