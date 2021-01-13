@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IUser, IUserFromValues } from '../models/UserModel';
+import { IUser, IUserFromValues, IUserUpdate } from '../models/UserModel';
 import { IVisit, NewVisit, UpdateVisitModel } from '../models/VisitModel';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
@@ -48,7 +48,8 @@ const Visits = {
 const User = {
     current: (): Promise<IUser> => requests.get('/user'),
     login: (user: IUserFromValues): Promise<IUser> => requests.post('/user/login', user),
-    register: (user: IUserFromValues): Promise<IUser> => requests.post('/user/register', user)
+    register: (user: IUserFromValues): Promise<IUser> => requests.post('/user/register', user),
+    update: (user: IUserUpdate) => requests.put(`/user`, user)
 }
 
 const Categories = {

@@ -1,7 +1,7 @@
 import { action, computed, observable, runInAction } from 'mobx';
 import { toast } from 'react-toastify';
 import agent from '../api/agent';
-import { IUser, IUserFromValues } from '../models/UserModel';
+import { IUser, IUserFromValues, IUserUpdate } from '../models/UserModel';
 import { RooteStore } from './RootStore';
 
 export default class UserStore{
@@ -52,6 +52,16 @@ export default class UserStore{
                     await this.login(value)
                 })
             
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
+
+    @action updateUser = async (value: IUserUpdate) => {
+        try{
+            await agent.User.update(value)
+            this.user!.isDoctor === true ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
         } catch (error) {
             console.log(error)
             throw error;

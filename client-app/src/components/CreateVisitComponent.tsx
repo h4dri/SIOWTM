@@ -90,8 +90,7 @@ const CreateVisitComponent = () => {
             date !== '' &&
             description !== '' &&
             category !== '' &&
-            doctor !== '' &&
-            rootStore.userStore.user?.subscribe == true
+            doctor !== ''
         ) setButtonStatus(false);
         else setButtonStatus(true);
     }
@@ -135,7 +134,8 @@ const CreateVisitComponent = () => {
                         <input type="text" value={description} onChange={handleChangeDescription} />
                     </div>
                     <div id="createVisitButton">
-                        <i>* wszystkie pola należy uzupełnić aby móc stworzyć wizytę</i>
+                        <i>* wszystkie pola należy uzupełnić aby móc stworzyć wizytę</i><br /> 
+                        <i>** aby stworzyć wizytę należy posiadać aktywowaną subskrypcję</i>
                         <input type="submit" value="Stwórz wizytę" disabled={buttonStatus} />
                     </div>
                 </div>

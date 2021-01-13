@@ -15,4 +15,11 @@ export interface IUserFromValues {
     displayName?: string;
     username?: string;
     isDoctor?: boolean;
+    subscribe?: boolean;
+    startDate?: Date;
+    endDate?: Date;
+}
+
+export interface IUserUpdate {
+    subscribe: boolean;
 }

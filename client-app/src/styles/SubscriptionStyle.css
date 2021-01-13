@@ -1,0 +1,15 @@
+#subscriptionContent{
+    width: 95%;
+    padding: 1% 2.5%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#subscriptionContent #subscriptionData .subText{
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+
+#subscriptionContent #subscriptionData #smart-button-container{
+    transform: scale(0.8);
+}

@@ -11,21 +11,26 @@ const SubscriptionComponent = () => {
 
     return(
         <div id="subscriptionContent">
+            <div id="subscriptionData">
             {
                 isSubscribe ? (
-                    <div id="subscriptionData">
-                        <h1>Subskrypcja roczna aktywowana</h1>
-                        <h2>Data rozpoczęcia subskrypcji: {startDate}</h2>
-                        <h2>Data zakończenia subskrypcji: {endDate}</h2>
-                    </div>
+                    <>
+                        <div className="subText"><i>Subskrypcja roczna aktywowana</i></div>
+                        <div className="subText"><i>Data rozpoczęcia subskrypcji: {startDate}</i></div>
+                        <div className="subText"><i>Data zakończenia subskrypcji: {endDate}</i></div>
+                    </>
                 ) : (
-                    <div id="smart-button-container">
-                        <div style={{ textAlign: "center" }}>
-                            <div id="paypal-button-container"></div>
+                    <>
+                        <div className="subText"><i>Brak Subskrypcji, aktywuj (cena: 100zł)</i></div>
+                        <div id="smart-button-container">
+                            <div style={{ textAlign: "center" }}>
+                                <div id="paypal-button-container"></div>
+                            </div>
                         </div>
-                    </div>
+                    </>
                 )
             }
+            </div>
         </div>
     );
 }
