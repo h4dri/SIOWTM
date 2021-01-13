@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistance;
 
 namespace Application.Visits
@@ -31,6 +34,12 @@ namespace Application.Visits
                             throw new RestException(HttpStatusCode.NotFound,
                             new {visit = "Not Found"});
 
+                        var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
+
+                        foreach (var comment in listOfComments)
+                        {
+                            _context.Remove(comment);
+                        }
                         _context.Remove(visit);
                         
                         var success = await _context.SaveChangesAsync() > 0;
