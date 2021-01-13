@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistance;
 
 namespace Application.Visits
@@ -50,6 +52,12 @@ namespace Application.Visits
                         if(visit == null)
                             throw new RestException(HttpStatusCode.NotFound,
                             new {visit = "Not Found"});
+
+                        var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
+                        foreach (var comment in listOfComments)
+                        {
+                            _context.Remove(comment);
+                        }
                         
                         visit.Title = request.Title ?? visit.Title;
                         visit.Description = request.Description ?? visit.Description;
@@ -58,7 +66,14 @@ namespace Application.Visits
                         visit.DocName = request.DocName ?? visit.DocName;
                         visit.isEnded = request.isEnded;
 
+                        
+
                         var success = await _context.SaveChangesAsync() > 0;
+
+                        foreach (var comment in listOfComments)
+                        {
+                            _context.Add(comment);
+                        }
         
                         if(success) return Unit.Value;
         
