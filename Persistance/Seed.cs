@@ -59,7 +59,7 @@ namespace Persistence
                         Email = "doctor1@doctor.com",
                         StartDate = DateTime.Now,
                         EndDate = DateTime.Now,
-                        IsDoctor = false,
+                        IsDoctor = true,
                         Subscribe = false
                     },
                     new AppUser
@@ -70,7 +70,7 @@ namespace Persistence
                         Email = "doctor2@doctor.com",
                         StartDate = DateTime.Now,
                         EndDate = DateTime.Now,
-                        IsDoctor = false,
+                        IsDoctor = true,
                         Subscribe = false
                     }
                 };
