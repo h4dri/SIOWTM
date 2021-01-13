@@ -72,18 +72,17 @@ namespace Application.Visits
 
 
 
-                var success = await _context.SaveChangesAsync() > 0;
+                var successComments = false;
 
                 foreach (var comment in listOfComments)
                 {
                     visit.Comments.Add(comment);
-                    success = await _context.SaveChangesAsync() > 0;
+                    successComments = await _context.SaveChangesAsync() > 0;
                     _mapper.Map<CommentsDto>(comment);
                 }
-
+                if (successComments) return Unit.Value;
                 
-
-                if (success) return Unit.Value;
+                
 
                 throw new Exception("Problem saving changes");
             }
