@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Application.User;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +32,11 @@ namespace API.Controllers
         public async Task<string[]> Doctors()
         {
             return await Mediator.Send(new Doctors.Query());
+        }
+        [HttpPut("edit")]
+        public async Task <ActionResult<Unit>> Edit(Edit.Command command)
+        {
+            return await Mediator.Send(command);
         }
     }
 }
