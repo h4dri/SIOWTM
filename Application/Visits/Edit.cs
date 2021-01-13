@@ -56,13 +56,6 @@ namespace Application.Visits
                 if(visit == null)
                     throw new RestException(HttpStatusCode.NotFound,
                     new {visit = "Not Found"});
-
-                var listOfComments = _context.Comments.Where(x=>x.Visit == visit).ToList();
-
-                foreach (var comment in listOfComments)
-                {
-                    visit.Comments.Remove(comment);
-                }
                 
                 visit.Title = request.Title ?? visit.Title;
                 visit.Description = request.Description ?? visit.Description;
