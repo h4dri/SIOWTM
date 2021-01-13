@@ -14,6 +14,7 @@ namespace Domain
         public string DocName {get;set;}
         public bool isEnded {get;set;}
         public virtual ICollection<UserVisit> UserVisits {get; set;}
+        public virtual ICollection<Comment> Comments { get; set; }
 
     }
 }

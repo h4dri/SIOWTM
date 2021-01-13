@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Application.Comments;
 using Domain;
 
 namespace Application.Visits
@@ -17,5 +18,6 @@ namespace Application.Visits
         public bool isEnded {get;set;} 
         [JsonPropertyName("attendees")]
         public ICollection<AttendeeDto> UserVisits {get; set;}
+        public ICollection<CommentsDto> Comments { get; set; }
     }
 }

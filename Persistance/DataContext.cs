@@ -13,6 +13,7 @@ namespace Persistance
         public DbSet<Value> Values {get; set;}
         public DbSet<Visit> Visits {get; set;}
         public DbSet<UserVisit> UserVisits {get; set;}
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
