@@ -53,10 +53,10 @@ namespace Application.Visits
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var visit = await _context.Visits.FindAsync(request.Id);
-                if(visit == null)
-                    throw new RestException(HttpStatusCode.NotFound,
-                    new {visit = "Not Found"});
-                
+
+                if (visit == null)
+                    throw new RestException(HttpStatusCode.NotFound, new { Visit = "Not found" });
+
                 visit.Title = request.Title ?? visit.Title;
                 visit.Description = request.Description ?? visit.Description;
                 visit.Category = request.Category ?? visit.Category;
@@ -64,7 +64,7 @@ namespace Application.Visits
                 visit.DocName = request.DocName ?? visit.DocName;
                 visit.isEnded = request.isEnded;
 
-                var success = _context.SaveChanges() > 0;
+                var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
 
