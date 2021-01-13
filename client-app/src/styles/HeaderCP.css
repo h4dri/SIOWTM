@@ -6,6 +6,12 @@
     background: #323232;
     overflow: hidden;
     box-shadow: 0px 10px 20px #565656;
+    color: #ededed;
+}
+
+#headerCP a{
+    color: #ededed;
+    text-decoration: none;
 }
 
 #headerCP #headerCPText{

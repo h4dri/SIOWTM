@@ -1,7 +1,7 @@
-import { throws } from "assert";
-import { action, observable } from "mobx";
+import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { action, observable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { IVisit, NewVisit, UpdateVisitModel } from "../models/VisitModel";
+import { IVisit, NewComment, NewVisit, UpdateVisitModel } from "../models/VisitModel";
 import { RooteStore } from "./RootStore";
 
 export default class VisitsStore {
@@ -14,6 +14,49 @@ export default class VisitsStore {
     @observable endedVisits: IVisit[] = [];
     @observable isLoading = false;
     @observable closeVisit: IVisit | undefined;
+    @observable.ref hubConnection: HubConnection | null = null;
+    @observable visit: IVisit | null = null;
+
+    @action createHubConnection = () => {
+        this.hubConnection = new HubConnectionBuilder()
+            .withUrl('http://localhost:5000/chat', {
+                accessTokenFactory: () => this.rootStore.commonStore.token!
+            })
+            .configureLogging(LogLevel.Information)
+            .build();
+
+        this.hubConnection
+            .start()
+            .then(() => console.log(this.hubConnection!.state))
+            .catch(error => console.log(error));
+
+        this.hubConnection.on(`ReceiveComment`, comment => {
+            runInAction(() => {
+                this.visit!.comments.push(comment);
+            })
+        })
+    }
+
+    @action stopHubConnection = () => {
+        this.hubConnection!.stop();
+    }
+
+    @action addComment = async (values: NewComment) => {
+        values.visitId = this.visit!.id;
+        try{
+            await this.hubConnection!.invoke(`SendComment`, values)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    @action loadOneVisit = async (id: string) => {
+        try{
+            this.visit = await agent.Visits.details(id)
+        } catch (error) { 
+            console.log(error)
+        }
+    }
 
     @action loadVisits = async () => {
         this.isLoading = true;
@@ -52,7 +95,9 @@ export default class VisitsStore {
     @action updateVisit = async (value: UpdateVisitModel) => {
         try{
             await agent.Visits.update(value)
-            this.rootStore.userStore.user!.isDoctor === true ? window.open("/doctorPanel", "_self") : window.open("/customerPanel", "_self")
+                .then(() => {
+                    window.open(`/visit/${value.id}`, "_self")
+                })
         } catch (error) {
             console.log(error)
         }

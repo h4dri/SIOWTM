@@ -1,0 +1,125 @@
+#oneVisitComponent #showableContent{
+    width: 95%;
+    min-height: 500px;
+    margin: 0;
+    padding: 1% 2.5%;
+    overflow: hidden;
+    background: #323232;
+    z-index: 100;
+}
+
+#oneVisitComponent .showableContentArea{
+    width: calc(45% - 1px);
+    padding: 1% 2.5%;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+
+#oneVisitComponent .descriptionContent{
+    width: calc(95% - 1px);
+    padding: 1% 2.5%;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+
+#oneVisitComponent .showableContentArea p{
+    text-align: left;
+    margin: 5px 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+#oneVisitComponent .showableContentArea input, select, textarea{
+    width: calc(100% - 16px);
+    padding: 4px 8px;
+    font-size: 14px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+    box-sizing:content-box;
+}
+
+#oneVisitComponent .showableContentArea #descriptionInput{
+    min-height: 50px;
+}
+
+#oneVisitComponent .showableContentArea input:focus{
+    outline:none;
+}
+
+#oneVisitComponent .showableContentArea select:focus{
+    outline:none;
+}
+
+#oneVisitComponent .showableContentArea textarea:focus{
+    outline:none;
+}
+
+#oneVisitComponent .showableContentArea input:disabled{
+    opacity: 0.5;
+}
+
+#oneVisitComponent .showableContentArea select:disabled{
+    opacity: 0.5;
+}
+
+#oneVisitComponent .showableContentArea textarea:disabled{
+    opacity: 0.5;
+}
+
+#oneVisitComponent #buttons{
+    display: block;
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 0 2.5%;
+    text-align: center;
+    width: 450px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+#oneVisitComponent #buttons input{
+    width: 120px;
+    margin: 10px 5px;
+    display: block;
+    float: left;
+    box-sizing:content-box;
+    padding: 8px 8px;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #ededed;
+    color: #323232;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#oneVisitComponent #buttons input:last-child{
+    border-color: #961e1e;
+    background-color: #da2828;
+    color: #ededed;
+}
+
+#oneVisitComponent #buttons input:focus{
+    outline: none;
+}
+
+#oneVisitComponent #buttons input:disabled{
+    opacity: 0.5;
+}
+
+@media only screen and (max-width: 1000px) {
+    #oneVisitComponent .showableContentArea{
+        width: calc(95% - 1px);
+        padding: 1% 2.5%;
+        display: block;
+        float: left;
+        overflow: hidden;
+    }
+}

@@ -7,6 +7,7 @@ import CustomerPanel from './CustomerPanel';
 import DoctorPanel from './DoctorPanel';
 import Register from './Register';
 import Logout from './Logout';
+import OneVisitComponent from './OneVisitComponent';
 
 function MainContent() {
     return (
@@ -28,6 +29,7 @@ function MainContent() {
                     <Route path="/logout">
                         <Logout />
                     </Route>
+                    <Route path="/visit/:id" component={OneVisitComponent}></Route>
                     <Route path="/">
                         <Home />
                     </Route>

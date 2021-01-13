@@ -44,7 +44,7 @@ function Register(){
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         const userDataToRegister: IUserFromValues = {
             email: email,
-            username: login,
+            userName: login,
             displayName: displayName,
             password: password,
             isDoctor: false

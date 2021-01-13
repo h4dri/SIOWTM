@@ -6,6 +6,24 @@ export interface IVisit{
     date: Date;
     isEnded: boolean;
     attendees: OneAttendee[];
+    comments: IComment[];
+}
+
+export interface IComment{
+    id: string;
+    createAt: Date;
+    body: string;
+    userName: string;
+    displayName: string;
+    image?: string;
+}
+
+export interface NewComment{
+    visitId?: string;
+    createAt: Date;
+    body: string;
+    userName: string;
+    displayName: string;
 }
 
 interface OneAttendee{
