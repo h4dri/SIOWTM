@@ -53,16 +53,16 @@ namespace Application.Visits
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var visit = await _context.Visits.FindAsync(request.Id);
-                if (visit == null)
+                if(visit == null)
                     throw new RestException(HttpStatusCode.NotFound,
-                    new { visit = "Not Found" });
+                    new {visit = "Not Found"});
 
-                var listOfComments = await _context.Comments.Where(x => x.Visit == visit).ToListAsync();
+                var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
                 foreach (var comment in listOfComments)
                 {
-                    visit.Comments.Remove(comment);
+                    _context.Remove(comment);
                 }
-
+                
                 visit.Title = request.Title ?? visit.Title;
                 visit.Description = request.Description ?? visit.Description;
                 visit.Category = request.Category ?? visit.Category;
@@ -70,19 +70,15 @@ namespace Application.Visits
                 visit.DocName = request.DocName ?? visit.DocName;
                 visit.isEnded = request.isEnded;
 
+                
 
-
-                var successComments = false;
+                var success = await _context.SaveChangesAsync() > 0;
 
                 foreach (var comment in listOfComments)
                 {
-                    visit.Comments.Add(comment);
-                    successComments = await _context.SaveChangesAsync() > 0;
-                    _mapper.Map<CommentsDto>(comment);
-                }
-                if (successComments) return Unit.Value;
-                
-                
+                    _context.Add(comment);
+                }        
+                if(success) return Unit.Value;
 
                 throw new Exception("Problem saving changes");
             }
