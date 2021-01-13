@@ -24,8 +24,6 @@ namespace Application.User
             public CommandValidator()
             {
                 RuleFor(x => x.Subscribe).NotEmpty();
-                RuleFor(x => x.StartDate).NotEmpty();
-                RuleFor(x => x.EndDate).NotEmpty();
             }
         }
 
@@ -50,8 +48,8 @@ namespace Application.User
                 ());
 
                 user.Subscribe = request.Subscribe;
-                user.StartDate = request.StartDate;
-                user.EndDate = request.EndDate;
+                user.StartDate = DateTime.Now;
+                user.EndDate = DateTime.Now.AddMonths(2);
 
                 var success = await _context.SaveChangesAsync() > 0;
 
