@@ -58,9 +58,10 @@ namespace Application.Visits
                     new {visit = "Not Found"});
 
                 var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
+
                 foreach (var comment in listOfComments)
                 {
-                    _context.Remove(comment);
+                    visit.Comments.Remove(comment);
                 }
                 
                 visit.Title = request.Title ?? visit.Title;
@@ -70,15 +71,9 @@ namespace Application.Visits
                 visit.DocName = request.DocName ?? visit.DocName;
                 visit.isEnded = request.isEnded;
 
-                
-
                 var success = await _context.SaveChangesAsync() > 0;
 
-                foreach (var comment in listOfComments)
-                {
-                    _context.Add(comment);
-                }        
-                if(success) return Unit.Value;
+                if (success) return Unit.Value;
 
                 throw new Exception("Problem saving changes");
             }
