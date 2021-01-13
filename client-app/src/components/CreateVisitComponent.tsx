@@ -90,7 +90,8 @@ const CreateVisitComponent = () => {
             date !== '' &&
             description !== '' &&
             category !== '' &&
-            doctor !== ''
+            doctor !== '' &&
+            rootStore.userStore.user?.subscribe == true
         ) setButtonStatus(false);
         else setButtonStatus(true);
     }

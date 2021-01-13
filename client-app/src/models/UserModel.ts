@@ -4,6 +4,9 @@ export interface IUser {
     token: string;
     image?: string;
     isDoctor: boolean;
+    subscribe: boolean;
+    startDate: Date;
+    endDate: Date;
 }
 
 export interface IUserFromValues {
