@@ -37,6 +37,9 @@ namespace Application.User
                     UserName = user.UserName,
                     Token = _jwtGenerator.CreateToken(user),
                     IsDoctor = user.IsDoctor,
+                    Subscribe = user.Subscribe,
+                    StartDate = user.StartDate,
+                    EndDate = user.EndDate,
                     Image = null
                 };
             }

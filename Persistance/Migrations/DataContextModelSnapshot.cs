@@ -38,6 +38,9 @@ namespace Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsDoctor")
                         .HasColumnType("INTEGER");
 
@@ -66,6 +69,12 @@ namespace Persistance.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Subscribe")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
@@ -96,9 +105,6 @@ namespace Persistance.Migrations
 
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDoctor")
-                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsHost")
                         .HasColumnType("INTEGER");

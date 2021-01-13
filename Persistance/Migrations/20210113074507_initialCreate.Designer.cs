@@ -9,7 +9,7 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210112170814_initialCreate")]
+    [Migration("20210113074507_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,9 @@ namespace Persistance.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsDoctor")
                         .HasColumnType("INTEGER");
 
@@ -68,6 +71,12 @@ namespace Persistance.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Subscribe")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
@@ -98,9 +107,6 @@ namespace Persistance.Migrations
 
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDoctor")
-                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsHost")
                         .HasColumnType("INTEGER");
