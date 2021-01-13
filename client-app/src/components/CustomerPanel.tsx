@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../stores/RootStore';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SubscriptionComponent from './SubscriptionComponent';
 
 const CustomerPanel = () => {
     const rootStore = useContext(RootStoreContext)
@@ -58,6 +59,7 @@ const CustomerPanel = () => {
                 <div id="customerPanelContent">
                     <div className="customerPanelBlock left top">
                         <div className="blockTopic"><h2>Subskrypcja</h2></div>
+                        <SubscriptionComponent />
                     </div>
                     <div className="customerPanelBlock right top">
                         <div className="blockTopic"><h2>Umów wizytę</h2></div>
