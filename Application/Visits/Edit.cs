@@ -77,10 +77,11 @@ namespace Application.Visits
                 foreach (var comment in listOfComments)
                 {
                     visit.Comments.Add(comment);
+                    success = await _context.SaveChangesAsync() > 0;
                     _mapper.Map<CommentsDto>(comment);
                 }
 
-                success = await _context.SaveChangesAsync() > 0;
+                
 
                 if (success) return Unit.Value;
 
