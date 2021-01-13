@@ -57,7 +57,7 @@ namespace Application.Visits
                     throw new RestException(HttpStatusCode.NotFound,
                     new {visit = "Not Found"});
 
-                var listOfComments = await _context.Comments.Where(x=>x.Visit == visit).ToListAsync();
+                var listOfComments = _context.Comments.Where(x=>x.Visit == visit).ToList();
 
                 foreach (var comment in listOfComments)
                 {
@@ -71,7 +71,7 @@ namespace Application.Visits
                 visit.DocName = request.DocName ?? visit.DocName;
                 visit.isEnded = request.isEnded;
 
-                var success = await _context.SaveChangesAsync() > 0;
+                var success = _context.SaveChanges() > 0;
 
                 if (success) return Unit.Value;
 
