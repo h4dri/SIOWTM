@@ -33,6 +33,7 @@ export default class VisitsStore {
         this.hubConnection.on(`ReceiveComment`, comment => {
             runInAction(() => {
                 this.visit!.comments.push(comment);
+                console.log("Store: ", this.visit?.comments.length)
             })
         })
     }

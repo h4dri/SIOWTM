@@ -1,0 +1,100 @@
+#chatContent{
+    width: 95%;
+    padding: 0 2.5%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#chatContent #chatTitle{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#chatContent #chatComments{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+#chatContent #chatComments .chatComment{
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+#chatContent #chatComments .chatComment .userName{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+}
+
+#chatContent #chatComments .chatComment .userName p{
+    margin: 0;
+}
+
+#chatContent #chatComments .chatComment .commentDate{
+    margin: 0 0 0 10px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+}
+
+#chatContent #chatComments .chatComment .commentDate::before{
+    content: "";
+    margin: 7.5px 0 0 10px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    height: 15px;
+    border-left: 1px solid #454545;
+}
+
+#chatContent #chatComments .chatComment .commentDate i{
+    color: #676767;
+}
+
+#chatContent #chatComments .chatComment .commentBody{
+    width: 98%;
+    margin: 0;
+    padding: 0 0 0 2%;
+    overflow: hidden;
+    display: block;
+}
+
+#chatContent #chatComments .chatComment .commentBody::after{
+    content: "";
+    margin: 5px 0 0 0;
+    overflow: hidden;
+    display: block;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #454545;
+}
+
+#chatContent #newCommentArea{
+
+}
+
+#chatContent #newCommentArea #commentArea{
+    
+}
+
+#chatContent #chatButton{
+
+}
+
+#chatContent #chatButton input{
+
+}

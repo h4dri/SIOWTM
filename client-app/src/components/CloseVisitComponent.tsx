@@ -1,17 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/CloseVisitStyle.css';
-import { RootStoreContext } from '../stores/RootStore';
 import { IVisit } from '../models/VisitModel';
 import Moment from 'moment';
 import 'moment/locale/pl';
 
 function CloseVisitComponent(props: {visit: IVisit | undefined}) {
-    const rootStore = useContext(RootStoreContext);
-
     const [clientName, setClientName] = useState('')
 
     useEffect(() => {
-        if(props.visit != undefined) {
+        if(props.visit !== undefined) {
             if(props.visit.attendees[0].isDoctor) {
                 setClientName(props.visit.attendees[1].displayName);
             } else {

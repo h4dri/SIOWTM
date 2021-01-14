@@ -11,8 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function DoctorPanel(){
     const rootStore = useContext(RootStoreContext);
     
-    const [firstName, setFirstName] = useState('Adam');
-    const [lastName, setLastName] = useState('Padżet');
+    const [firstName] = useState('Adam');
+    const [lastName] = useState('Padżet');
     const [appointmentsList, setAppointmentsList] = useState<Array<IVisit>>(rootStore.visitsStore.visits);
     const [closeVisit, setCloseVisit] = useState(rootStore.visitsStore.closeVisit);
     const [closedVisitsList, setClosedVisitsList] = useState<Array<IVisit>>(rootStore.visitsStore.endedVisits);

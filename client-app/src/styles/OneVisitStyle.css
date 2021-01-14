@@ -88,7 +88,7 @@
     width: 120px;
     margin: 10px 5px;
     display: block;
-    float: left;
+    float: right;
     box-sizing:content-box;
     padding: 8px 8px;
     font-size: 16px;
@@ -100,7 +100,7 @@
     border-radius: 5px;
 }
 
-#oneVisitComponent #buttons input:last-child{
+#oneVisitComponent #buttons input:first-child{
     border-color: #961e1e;
     background-color: #da2828;
     color: #ededed;

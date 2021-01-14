@@ -13,8 +13,8 @@ import SubscriptionComponent from './SubscriptionComponent';
 const CustomerPanel = () => {
     const rootStore = useContext(RootStoreContext)
 
-    const [firstName, setFirstName] = useState('Adam');
-    const [lastName, setLastName] = useState('Padżet');
+    const [firstName] = useState('Adam');
+    const [lastName] = useState('Padżet');
     const [appointmentsList, setAppointmentsList] = useState<Array<IVisit>>(rootStore.visitsStore.visits);
     const [closedVisitsList, setClosedVisitsList] = useState<Array<IVisit>>(rootStore.visitsStore.endedVisits);
     const [isLoading, setIsLoading] = useState(true);

@@ -3,19 +3,25 @@ import { RootStoreContext } from '../stores/RootStore';
 import '../styles/VisitChatStyle.css';
 import { observer } from 'mobx-react-lite';
 import { NewComment } from '../models/VisitModel';
+import { autorun } from 'mobx';
 
 const VisitChatComponent = (props: {isEnded: boolean}) => {
     const rootStore = useContext(RootStoreContext);
 
     const [textArea, setTextArea] = useState('');
-    const [heightCommentsArea, setHeightCommentsArea] = useState(0);
 
     const {
         createHubConnection,
         stopHubConnection,
         addComment,
         visit
-    } = rootStore.visitsStore;
+    } = rootStore.visitsStore;   
+
+    useEffect(() => {
+        console.log("Front: ", visit?.comments.length)
+    }, [visit?.comments.length])
+
+    autorun(() => {console.log("???", visit?.comments.length)})
 
     useEffect(() => {
         createHubConnection();
@@ -24,18 +30,16 @@ const VisitChatComponent = (props: {isEnded: boolean}) => {
         }
     }, [createHubConnection, stopHubConnection])
 
-    useEffect(() => {
-        if(visit?.comments){
-            var h = visit?.comments.length * 28
-            setHeightCommentsArea(h)
-        }
-    }, [visit?.comments])
-
-    const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleTextAreaChangeA = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextArea(event.target.value);
     }
 
+    const enterCatch = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if(event.key === "Enter") handleAddCommentButton()
+    }
+
     const handleAddCommentButton = async () => {
+        if(textArea === '') return
         const value: NewComment = {
             createAt: new Date(Date.now()),
             body: textArea,
@@ -43,32 +47,39 @@ const VisitChatComponent = (props: {isEnded: boolean}) => {
             displayName: rootStore.userStore.user!.displayName
         }
         await addComment(value)
+            .then(() => {
+                setTextArea('');
+            })
     }
 
     return(
         <div id="chatContent">
-            <div id="chatTitle"><p>Komentarze:</p></div>
-            <div id="chatComments" style={{ height: heightCommentsArea }}>
-                {visit && visit.comments && visit.comments.map((comment) => (
-                    <div className="chatComment" key={comment.id}>
-                        {console.log(comment)}
-                        <p>{comment.displayName} <i>{comment.userName}</i></p>
-                        <p>{comment.body}</p> 
-                    </div>
-                ))}
-            </div>
+            <div id="chatTitle"><h2>Komentarze:</h2></div>
             { props.isEnded ? (
                 null
             ) : (
                 <>
                     <div id="newCommentArea">
-                        <textarea id="commentArea" name="commentArea" value={textArea} onChange={handleTextAreaChange}/>
+                        <textarea id="commentArea" name="commentArea" value={textArea} onKeyUp={enterCatch} onChange={handleTextAreaChangeA} />
                     </div>
                     <div id="chatButton">
                         <input type="submit" value="Dodaj komentarz" onClick={handleAddCommentButton} />
                     </div>
                 </>
             )}
+            <div id="chatComments">
+                {visit && visit.comments && visit.comments.slice(0).reverse().map((comment, index) => (
+                    index < 10 ? (
+                        <div className="chatComment" key={comment.id}>
+                            <div className="userName"><p>Użytkownik: {comment.displayName}</p></div>
+                            <div className="commentDate"><i>{comment.userName}</i></div>
+                            <div className="commentBody"><i>{comment.body}</i></div>
+                        </div>
+                    ) : (
+                        null
+                    )
+                ))}
+            </div>
         </div>
     )
 }

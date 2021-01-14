@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { RootStoreContext } from '../stores/RootStore';
 import '../styles/SubscriptionStyle.css';
 
 const SubscriptionComponent = () => {
     const rootStore = useContext(RootStoreContext)
 
-    const [isSubscribe, setIsSubsribe] = useState(rootStore.userStore.user?.subscribe);
-    const [startDate, setStartDate] = useState(rootStore.userStore.user?.startDate);
-    const [endDate, setEndDate] = useState(rootStore.userStore.user?.endDate);
+    const [isSubscribe] = useState(rootStore.userStore.user?.subscribe);
+    const [startDate] = useState(rootStore.userStore.user?.startDate);
+    const [endDate] = useState(rootStore.userStore.user?.endDate);
 
     return(
         <div id="subscriptionContent">

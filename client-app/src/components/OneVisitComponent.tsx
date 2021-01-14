@@ -64,19 +64,22 @@ const OneVisitComponent: React.FC<RouteComponentProps<DetailParams>> = ({match})
     function handleEditVisitButton(){
         readOnly ? console.log("Kliknięto edycję!") : console.log("Zapisano!")
 
-        if (readOnly === false && visit) {
-            const visitToUpdate: UpdateVisitModel = {
-                id: visit?.id,
-                title: visit?.title,
-                description: visit?.description,
-                category: visit?.category,
-                date: visit?.date,
-                docName: doctorName
-            };
-            rootStore.visitsStore.updateVisit(visitToUpdate)
-                .then(() => {
-                    toast.success('Pomyślnie zakutalizowano!');
-                });
+        if (readOnly === false) {
+            if(visit){
+                const visitToUpdate: UpdateVisitModel = {
+                    id: visit.id,
+                    title: title,
+                    description: description,
+                    category: category,
+                    date: new Date(date),
+                    docName: doctorName,
+                    isEnded: false
+                };
+                rootStore.visitsStore.updateVisit(visitToUpdate)
+                    .then(() => {
+                        toast.success('Pomyślnie zakończono wizytę!');
+                    });
+            }
         }
         readOnly ? setReadOnly(false) : setReadOnly(true)
         readOnly ? setEditButtonText("Zapisz") : setEditButtonText("Edytuj wizytę")
@@ -135,17 +138,22 @@ const OneVisitComponent: React.FC<RouteComponentProps<DetailParams>> = ({match})
             <HeaderCP firstName="Jan" lastName="Padżet" isDoctor={false}/>
             {
                 isEnded ? (
-                    <div id="visitEnded"><h1>Wizyta zakończona.</h1></div>
+                    <>
+                        <div id="visitEnded"><h1>Wizyta zakończona.</h1></div>
+                        <div id="buttons">
+                            <input type="submit" value="Wróć" onClick={handleBackButton} />
+                        </div>
+                    </>
                 ) : (
                     <div id="buttons">
-                        <input type="submit" value="Wróć" onClick={handleBackButton} />
-                        <input type="submit" value={editButtonText} onClick={handleEditVisitButton} />
                         {
                             rootStore.userStore.user?.isDoctor ?
                                 <input type="submit" value="Zakończ wizytę" onClick={handleEndVisitButton}/>
                                 :
                                 <input type="submit" value="Usuń wizytę" onClick={handleDelVisitButton} />
                         }
+                        <input type="submit" value={editButtonText} onClick={handleEditVisitButton} />
+                        <input type="submit" value="Wróć" onClick={handleBackButton} />
                     </div>
                 )
             }
@@ -177,9 +185,7 @@ const OneVisitComponent: React.FC<RouteComponentProps<DetailParams>> = ({match})
             <div className="showableContentArea descriptionContent"><p>Szczegóły:</p>
                 <textarea id="descriptionInput" value={description} onChange={handleChangeDescription} disabled={readOnly} style={{ width: "calc(100% - 16px)" }}/>
             </div>
-            <div className="showableContentArea">
-                <VisitChatComponent isEnded={isEnded}/>
-            </div>
+            <VisitChatComponent isEnded={isEnded}/>
         </div>
     )
 }
